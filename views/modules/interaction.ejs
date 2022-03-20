@@ -1,0 +1,47 @@
+<script type="text/javascript">
+
+  // Select  interaction
+  var select = new ol.interaction.Select({
+    hitTolerance: 5,
+    multi: true,
+    condition: ol.events.condition.singleClick
+  });
+  map.addInteraction(select);
+
+  // Select control
+  var popup = new ol.Overlay.PopupFeature({
+    popupClass: 'default anim',
+    select: select,
+    canFix: true,
+    // onshow: moveTarget(),
+    template: {
+      title:
+        function (f) {
+          return 'Info';
+        },
+      attributes:
+      {
+        'track_id': {
+          title: 'track_id',
+          format: function (val, f) {
+            return f.get('track_id')
+          }
+        },
+        'class_id': {
+          title: 'class_id',
+          format: function (val, f) {
+            return f.get('class_id')
+          }
+        },
+        'video_uri_id': {
+          title: 'video_uri_id',
+          format: function (val, f) {
+            return f.get('video_uri_id')
+          }
+        }
+      }
+    }
+  });
+  map.addOverlay(popup);
+
+</script>

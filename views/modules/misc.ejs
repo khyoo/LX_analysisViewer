@@ -1,0 +1,44 @@
+<script type="text/javascript">
+
+  // A dialog inside a map
+  var dialogMap = new ol.control.Dialog({ hideOnClick: true, className: 'center' });
+  map.addControl(dialogMap);
+
+  // Prompt dialog
+  var dialogPrompt = new ol.control.Dialog();
+
+  dialogPrompt.on('button', function (e) {
+    if (e.button === 'submit') {
+      if (deleteNum != document.getElementById("delNum").value) {
+        dialogMap.show('Please enter a value correctly.');
+      } else {
+        $.ajax({
+          dataType: 'json',
+          url: geoTrackObj + deleteNum,
+          type: 'DELETE',
+          async: false,
+          success: function (result) {
+            alert('The selected layer was deleted!');
+            window.location.reload();
+          },
+          error: function (request, status, error) {
+            alert("REST API로부터 데이터를 받아올 수 없습니다.");
+          }
+        });
+      }
+    }
+  });
+  dialogPrompt.on('show', function () {
+    dialogMap.close();
+  });
+  map.addControl(dialogPrompt);
+
+  // ProgressBar
+  var progress = new ol.control.ProgressBar({
+    // target: $('.options').get(0)
+    //label: 'Map loading...',
+    layers: layers
+  });
+  map.addControl(progress);
+
+</script>

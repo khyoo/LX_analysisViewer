@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<% include ./headers/header %>
+
+<script type="text/javascript">
+
+</script>
+
+<body>
+  <div id="div_load_image">
+    <img src="/images/loading.gif" style="width:300px; height:300px;">
+  </div>
+
+  <!-- DIV pour la carte -->
+  <div id="map" class="sidebar-map"></div>
+    
+  <script type="text/javascript">
+
+    $('#div_load_image').hide();
+
+    var view = new ol.View({
+      projection: 'EPSG:3857',
+      center: [14149732.451901091, 4275834.960402206],
+      zoom: 17
+    });
+
+    var layers = [
+      new ol.layer.Tile({
+        // A layer must have a title to appear in the layerswitcher
+        title: 'VWorld 2D',
+        // Again set this layer as a base layer
+        type: 'base',
+        visible: true,
+        source: new ol.source.XYZ({
+          url: 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png'
+        })
+      }),
+      new ol.layer.Tile({
+        // A layer must have a title to appear in the layerswitcher
+        title: 'VWorld 2D 위성지도',
+        // Again set this layer as a base layer
+        type: 'base',
+        visible: false,
+        source: new ol.source.XYZ({
+          url: 'http://xdworld.vworld.kr:8080/2d/Satellite/service/{z}/{x}/{y}.jpeg'
+        })
+      }),
+      new ol.layer.Tile({
+        // A layer must have a title to appear in the layerswitcher
+        title: 'OSM',
+        // Again set this layer as a base layer
+        type: 'base',
+        visible: false,
+        source: new ol.source.OSM()
+      })
+    ];
+
+    var map = new ol.PerspectiveMap({
+    //var map = new ol.Map({
+      target: 'map',
+      layers: layers,
+      view: view
+    });
+
+  </script>
+
+  <!--
+
+  <% include ./modules/interaction %>
+
+  <% include ./modules/modals %>
+
+-->
+
+  <% include ./modules/layers %>
+
+  <% include ./modules/button %>
+
+  <% include ./modules/contextMenu %>
+  
+  <% include ./modules/renderer %>
+
+  <% include ./modules/flowLine %>
+
+  <% include ./modules/misc %>
+
+</body>
+
+</html>

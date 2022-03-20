@@ -1,0 +1,47 @@
+<script type="text/javascript">
+
+  // Create layer
+  var renderSource = new ol.source.Vector({
+    url: '/data/j_build.geojson',
+    projection: 'EPSG:3857',
+    format: new ol.format.GeoJSON()
+  });
+
+  var renderVector = new ol.layer.Vector({
+    source: renderSource,
+    /*
+    style: new ol.style.Style({
+    fill: new ol.style.Fill({ color: '#333' })
+    }),
+    */
+    maxResolution: 3
+  });
+  map.addLayer(renderVector);
+
+  // Set 3D renderer
+  var r3D = new ol.render3D({
+    /** /
+    style: new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: 'blue',
+        width: 2
+      }),
+      fill: new ol.style.Fill({ color: 'red' })
+    }),
+    /**/
+    // ghost: true,
+    height: 0,
+    maxResolution: 3,
+    defaultHeight: 3.5
+  });
+  renderVector.setRender3D(r3D);
+
+  var height = 0;
+  function doAnime() {
+    if (r3D.animating()) return;
+
+    height = height ? 0 : "A16";
+    r3D.animate({ height: height });
+  }
+
+</script>
