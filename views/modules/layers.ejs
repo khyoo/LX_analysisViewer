@@ -1,4 +1,92 @@
 <script type="text/javascript">
 
+    // Create layer
+    var buildingSource = new ol.source.Vector({
+        url: '/data/j_build.geojson',
+        projection: 'EPSG:3857',
+        format: new ol.format.GeoJSON()
+    });
+
+    var buildingVector = new ol.layer.Vector({
+        title: '건물 Polygon',
+        visible: true,
+        source: buildingSource,
+        /*
+        style: new ol.style.Style({
+        fill: new ol.style.Fill({ color: '#333' })
+        }),
+        */
+        maxResolution: 3,
+        zIndex: 1000
+    });
+    //map.addLayer(renderVector);
+
+    // Create layer
+    var roadPOISource = new ol.source.Vector({
+        url: '/data/poi.geojson',
+        projection: 'EPSG:3857',
+        format: new ol.format.GeoJSON()
+    });
+
+    var roadPOIVector = new ol.layer.Vector({
+        title: '도로 Point',
+        visible: false,
+        source: roadPOISource,
+        /*
+        style: new ol.style.Style({
+            fill: new ol.style.Fill({ color: '#333' })
+        }),                
+        */
+    });
+    //map.addLayer(poiVector);
+
+    // GPX vetor layer
+    var gpxSource = new ol.source.Vector({
+        url: '/data/j_flow.gpx',
+        format: new ol.format.GPX()
+    });
+    var gpxVector = new ol.layer.VectorImage({
+        title: '도로 점수',
+        visible: false,
+        source: gpxSource,
+        style: styleFn
+    });
+    //map.addLayer(gpxVector);
+
+    gpxSource.once('change', function (e) {
+        if (gpxSource.getState() === 'ready') {
+            getMinMax(gpxSource.getFeatures()[0]);
+        }
+    });
+
+    // Set 3D renderer
+    var r3D = new ol.render3D({
+        /** /
+        style: new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'blue',
+            width: 2
+          }),
+          fill: new ol.style.Fill({ color: 'red' })
+        }),
+        /**/
+        // ghost: true,
+        height: 0,
+        maxResolution: 3,
+        defaultHeight: 3.5
+    });
+    buildingVector.setRender3D(r3D);
+
+    var height = 0;
+    function doAnime() {
+        //buildingVector.on();
+        map.setPerspective(15);
+        if (r3D.animating()) return;
+
+        if(height) map.setPerspective(0);
+
+        height = height ? 0 : "A16";
+        r3D.animate({ height: height });
+    }
 
 </script>

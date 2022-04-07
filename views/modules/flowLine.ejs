@@ -40,24 +40,6 @@
       }
     })
   }
-
-  // GPX vetor layer
-	var gpxSource = new ol.source.Vector({    
-    url: '/data/j_flow.gpx',
-    format: new ol.format.GPX()
-  });  
-	var gpxVector = new ol.layer.VectorImage({
-    source: gpxSource,
-    style: styleFn
-	});
-  map.addLayer(gpxVector);
-  
-	gpxSource.once('change',function(e) {
-    if (gpxSource.getState() === 'ready'){
-      getMinMax (gpxSource.getFeatures()[0]);
-      
-		}
-  });
   
   /** Get the coordinate at a distance from the start
    * @param {number} r distance from the start

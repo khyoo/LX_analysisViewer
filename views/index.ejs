@@ -12,9 +12,73 @@
     <img src="/images/loading.gif" style="width:300px; height:300px;">
   </div>
 
+  <!-- START OF SIDEBAR DIV -->
+  <div id="sidebar" class="sidebar collapsed">
+  
+    <!-- Nav tabs -->
+    <div class="sidebar-tabs">
+      <ul role="tablist">
+        <li><a href="#tracks" role="tab"><i class="fa fa-map"></i></a></li>
+        <li><a href="#trackTimes" role="tab"><i class="fa fa-quora"></i></a></li>
+        <li><a href="#info" role="tab"><i class="fa fa-plus"></i></a></li>
+        <li><a href="https://github.com/khyoo/LX_analysisViewer" role="tab" target="_blank"><i
+              class="fa fa-github"></i></a></li>
+      </ul>
+      <ul role="tablist">
+        <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+      </ul>
+    </div>
+  
+    <!-- Tab panes -->
+    <div class="sidebar-content" style="word-break: break-all;">
+      <div class="sidebar-pane" id="tracks">
+        <h2 class="sidebar-header">
+          Layers & Tracks
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h2>
+        <div id="layers" class="layer-switcher"></div>
+        <div style="margin-left: 100px;">
+          <button type="button" class="btn btn-secondary" onclick="javascript:doAnime()">2.5D 분석</button>
+        </div>
+        <div style="margin: 20px;">
+          지도 회전 : Alt+Shift+Drag
+        </div>
+      </div>
+  
+      <div class="sidebar-pane" id="trackTimes">
+        <h2 class="sidebar-header">
+          Deep Zones Insert
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h2>
+        <div id="trackQuery">
+          
+        </div>
+      </div>
+  
+      <div class="sidebar-pane" id="info">
+        <h2 class="sidebar-header">
+          Track Insert
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h2>
+        <div id="trackInsert">
+          
+        </div>
+      </div>
+  
+      <div class="sidebar-pane" id="settings">
+        <h2 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <!-- END OF SIDEBAR DIV -->
+
   <!-- DIV pour la carte -->
   <div id="map" class="sidebar-map"></div>
-    
+
+  <% include ./modules/flowLine %>
+  <% include ./modules/layers %>
+  
   <script type="text/javascript">
 
     $('#div_load_image').hide();
@@ -31,7 +95,7 @@
         title: 'VWorld 2D',
         // Again set this layer as a base layer
         type: 'base',
-        visible: false,
+        visible: true,
         source: new ol.source.XYZ({
           url: 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png'
         })
@@ -41,7 +105,7 @@
         title: 'VWorld 2D 위성지도',
         // Again set this layer as a base layer
         type: 'base',
-        visible: true,
+        visible: false,
         source: new ol.source.XYZ({
           url: 'http://xdworld.vworld.kr:8080/2d/Satellite/service/{z}/{x}/{y}.jpeg'
         })
@@ -53,6 +117,18 @@
         type: 'base',
         visible: false,
         source: new ol.source.OSM()
+      }),
+      new ol.layer.Group({
+        // A layer must have a title to appear in the layerswitcher
+        title: 'Spatial 객체',
+        // Adding a 'fold' property set to either 'open' or 'close' makes the group layer
+        // collapsible
+        fold: 'open',
+        layers: [
+          buildingVector,          
+          roadPOIVector,
+          gpxVector
+        ]
       })
     ];
 
@@ -62,27 +138,19 @@
       view: view
     });
 
+    var sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'left' });
+    var toc = document.getElementById("layers");
+    ol.control.LayerSwitcher.renderPanel(map, toc);
+    map.addControl(sidebar);
    
   </script>
 
   <!--
-
   <% include ./modules/interaction %>
-
   <% include ./modules/modals %>
-
--->
-
-  <% include ./modules/layers %>
-
-  <% include ./modules/button %>
+  -->
 
   <% include ./modules/contextMenu %>
-  
-  <% include ./modules/renderer %>
-
-  <% include ./modules/flowLine %>
-
   <% include ./modules/misc %>
 
 </body>
