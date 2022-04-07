@@ -20,7 +20,7 @@
     $('#div_load_image').hide();
 
     var view = new ol.View({
-      projection: 'EPSG:3857',
+      projection: 'EPSG:3857',      
       center: [14149732.451901091, 4275834.960402206],
       zoom: 17
     });
@@ -31,7 +31,7 @@
         title: 'VWorld 2D',
         // Again set this layer as a base layer
         type: 'base',
-        visible: true,
+        visible: false,
         source: new ol.source.XYZ({
           url: 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png'
         })
@@ -41,7 +41,7 @@
         title: 'VWorld 2D 위성지도',
         // Again set this layer as a base layer
         type: 'base',
-        visible: false,
+        visible: true,
         source: new ol.source.XYZ({
           url: 'http://xdworld.vworld.kr:8080/2d/Satellite/service/{z}/{x}/{y}.jpeg'
         })
@@ -56,13 +56,13 @@
       })
     ];
 
-    var map = new ol.PerspectiveMap({
-    //var map = new ol.Map({
+    var map = new ol.PerspectiveMap({    
       target: 'map',
       layers: layers,
       view: view
     });
 
+   
   </script>
 
   <!--
