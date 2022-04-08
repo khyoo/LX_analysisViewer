@@ -10,19 +10,38 @@
   map.addInteraction(select);
 */
 
-  // Control Select 
+  // 마우스 오버 시 효과,
+  var hover = new ol.interaction.Select({
+    hitTolerance: 10,
+    multi: false,
+    condition: ol.events.condition.pointerMove,
+    style: new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 10,
+        snapToPixel: false,
+        stroke: new ol.style.Stroke({
+          color: "#900",
+          width: 2
+        }),
+        fill: new ol.style.Fill({
+          color: 'rgba(255, 0, 0, 0.3)'
+        })
+      })
+    })
+  });
+  map.addInteraction(hover);
+
+  // 마우스 클릭 시,
   var select = new ol.interaction.Select({
     hitTolerance: 5,
-    multi: true,
+    multi: false,
     condition: ol.events.condition.singleClick
   });
   map.addInteraction(select);
 
-  let src = 'EPSG:3857'
-  let dest = 'EPSG:4326' 
-
   // On selected => show/hide popup
-  select.getFeatures().on(['add'], function(e) {       
+  select.getFeatures().on(['add'], function(e) {
+   /*
     var feature = e.element;console.log(feature.getGeometry().getFirstCoordinate());
     var content = "";
     content += "<img src='http://info.rlog.kr:35000/images/"+feature.get("img_1")+"'/>";
@@ -33,13 +52,21 @@
     } else {
       popup.show(feature.getGeometry().getFirstCoordinate(), content); 
     }
+    */
+    var feature = e.element;
+
+    let html = '';
+    html += '<img src="http://info.rlog.kr:35000/images/'+feature.get('img_1')+'" width="300px" height="300px" />';
+
+    $("#layout-viewer").show();
+    $("#layout-viewer").html(html);
   });
   select.getFeatures().on(['remove'], function(e) {
-    popup.hide(); 
-    popup2.hide(); 
+    //popup.hide(); 
+    //popup2.hide(); 
   })
 
-  popup.setPixelPosition([1570,30], 'top-right');
+  popup.setPixelPosition([10,10], 'top-right');
   
   popup.setLinkStyle (new ol.style.Style({
     fill: new ol.style.Fill({ color: '#f96' })
