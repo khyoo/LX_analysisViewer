@@ -16,10 +16,10 @@
         fill: new ol.style.Fill({ color: '#333' })
         }),
         */
-        maxResolution: 3,
-        zIndex: 1000
+        maxResolution: 10,
+        zIndex: 1100
     });
-    //map.addLayer(renderVector);
+    //map.addLayer(buildingVector);
 
     // Create layer
     var roadPOISource = new ol.source.Vector({
@@ -32,11 +32,17 @@
         title: '도로 Point',
         visible: false,
         source: roadPOISource,
-        /*
         style: new ol.style.Style({
-            fill: new ol.style.Fill({ color: '#333' })
-        }),                
-        */
+            image: new ol.style.Circle({
+                radius: 5,
+                snapToPixel: false,
+                stroke: new ol.style.Stroke({
+                    color: "#6C757D",
+                    width: 2
+                })
+            })
+        }),
+        zIndex: 1000
     });
     //map.addLayer(poiVector);
 
@@ -72,21 +78,10 @@
         /**/
         // ghost: true,
         height: 0,
-        maxResolution: 3,
+        maxResolution: 10,
         defaultHeight: 3.5
     });
     buildingVector.setRender3D(r3D);
 
-    var height = 0;
-    function doAnime() {
-        //buildingVector.on();
-        map.setPerspective(15);
-        if (r3D.animating()) return;
-
-        if(height) map.setPerspective(0);
-
-        height = height ? 0 : "A16";
-        r3D.animate({ height: height });
-    }
 
 </script>

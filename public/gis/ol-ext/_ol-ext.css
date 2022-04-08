@@ -348,10 +348,10 @@
           box-shadow: 3px 3px 4px rgba(0,0,0, 0.5);
   -webkit-transform: translate(-50%, -30%);
           transform: translate(-50%, -30%);
-  -webkit-transition: top .2s, -webkit-transform .2s;
-  transition: top .2s, -webkit-transform .2s;
-  transition: top .2s, transform .2s;
-  transition: top .2s, transform .2s, -webkit-transform .2s;
+  -webkit-transition: top .4s, -webkit-transform .5s;
+  transition: top .4s, -webkit-transform .5s;
+  transition: top .4s, transform .5s;
+  transition: top .4s, transform .5s, -webkit-transform .5s;
   padding: 1em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1209,13 +1209,6 @@ body > .ol-ext-dialog > form {
   -webkit-box-shadow: 0.6em 0 0 1em #fff;
           box-shadow: 0.6em 0 0 1em #fff;
 }
-.ol-imageline.ol-scroll0.ol-arrow:before {
-  display: none;
-}
-.ol-imageline.ol-scroll1.ol-arrow:after {
-  display: none;
-}
-
 
 .ol-imageline .ol-image {
   position: relative;
@@ -2455,19 +2448,6 @@ ul.ol-legend li div {
   cursor: pointer;
 }
 
-.ol-notification .ol-close,
-.ol-notification .ol-close:hover {
-  padding-right: 1.5em;
-}
-
-.ol-notification .closeBox {
-  position: absolute;
-  top: 0;
-  right: 0.3em;
-}
-.ol-notification .closeBox:before {
-  content: '\00d7';
-}
 .ol-overlay {
   position: absolute;
   top: 0;
@@ -3203,7 +3183,7 @@ ul.ol-legend li div {
   background-color: rgba(0,60,136,.5);
   left: 0;
   bottom: 0;
-  height: .5em;
+  height: 3.5em;
   width: 0;
   -webkit-transition: width .2s;
   transition: width .2s;
@@ -3221,8 +3201,8 @@ ul.ol-legend li div {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 2em;
+  color: rgba(0,60,136,.5);
+  font-size: 5em;
   display: block;
   -webkit-animation: 1s linear infinite ol-progress-bar-blink;
           animation: 1s linear infinite ol-progress-bar-blink;
@@ -6328,8 +6308,7 @@ ul.ol-legend li div {
   list-style: none;
   white-space: nowrap;
 }
-.ol-input-popup.ol-hover:hover .ol-popup,
-.ol-input-popup.ol-focus .ol-popup {
+.ol-input-popup:hover .ol-popup {
   display: block;
 }
 .ol-input-popup.ol-right .ol-popup {
@@ -6507,22 +6486,18 @@ ul.ol-legend li div {
   left: auto;
   right: -5px;
 }
-.ol-input-slider.ol-hover:hover .ol-popup,
-.ol-input-slider.ol-focus .ol-popup {
+.ol-input-slider:hover .ol-popup {
   display: block;
   white-space: nowrap;
 }
-.ol-input-slider.ol-hover:hover .ol-popup > *,
-.ol-input-slider.ol-focus .ol-popup > * {
+.ol-input-slider:hover .ol-popup > * {
   display: inline-block;
   vertical-align: middle;
 }
-.ol-input-slider.ol-hover:hover .ol-popup > .ol-before,
-.ol-input-slider.ol-focus .ol-popup > .ol-before {
+.ol-input-slider:hover .ol-popup > .ol-before {
   margin-left: 10px;
 }
-.ol-input-slider.ol-hover:hover .ol-popup > .ol-after,
-.ol-input-slider.ol-focus .ol-popup > .ol-after {
+.ol-input-slider:hover .ol-popup > .ol-after {
   margin-right: 10px;
 }
 .ol-input-slider .ol-slider {

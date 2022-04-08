@@ -78,10 +78,22 @@
 
   <% include ./modules/flowLine %>
   <% include ./modules/layers %>
-  
+   
   <script type="text/javascript">
 
     $('#div_load_image').hide();
+
+    // Popup overlay
+    var popup = new ol.Overlay.FixedPopup ({
+      popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
+      anim: true,
+      closeBox: true
+    });
+    var popup2 = new ol.Overlay.FixedPopup ({
+      popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
+      anim: true,
+      closeBox: true
+    });
 
     var view = new ol.View({
       projection: 'EPSG:3857',      
@@ -135,6 +147,7 @@
     var map = new ol.PerspectiveMap({    
       target: 'map',
       layers: layers,
+      overlays: [popup, popup2],
       view: view
     });
 
@@ -143,14 +156,27 @@
     ol.control.LayerSwitcher.renderPanel(map, toc);
     map.addControl(sidebar);
    
+    var height = 0;
+    function doAnime() {  //console.log(buildingVector.get('visible'));
+        //buildingVector.setVisible(true);
+
+        map.setPerspective(15);
+        if (r3D.animating()) return;
+
+        if (height) map.setPerspective(0);
+
+        height = height ? 0 : "A16";
+        r3D.animate({ height: height });
+    }
+
   </script>
 
   <!--
-  <% include ./modules/interaction %>
   <% include ./modules/modals %>
+  <% include ./modules/contextMenu %>
   -->
 
-  <% include ./modules/contextMenu %>
+  <% include ./modules/interaction %>  
   <% include ./modules/misc %>
 
 </body>

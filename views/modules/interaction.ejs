@@ -1,6 +1,16 @@
 <script type="text/javascript">
 
   // Select  interaction
+  /*
+  var select = new ol.interaction.Select({
+    hitTolerance: 5,
+    multi: true,
+    condition: ol.events.condition.singleClick
+  });
+  map.addInteraction(select);
+*/
+
+  // Control Select 
   var select = new ol.interaction.Select({
     hitTolerance: 5,
     multi: true,
@@ -8,40 +18,31 @@
   });
   map.addInteraction(select);
 
-  // Select control
-  var popup = new ol.Overlay.PopupFeature({
-    popupClass: 'default anim',
-    select: select,
-    canFix: true,
-    // onshow: moveTarget(),
-    template: {
-      title:
-        function (f) {
-          return 'Info';
-        },
-      attributes:
-      {
-        'track_id': {
-          title: 'track_id',
-          format: function (val, f) {
-            return f.get('track_id')
-          }
-        },
-        'class_id': {
-          title: 'class_id',
-          format: function (val, f) {
-            return f.get('class_id')
-          }
-        },
-        'video_uri_id': {
-          title: 'video_uri_id',
-          format: function (val, f) {
-            return f.get('video_uri_id')
-          }
-        }
-      }
+  let src = 'EPSG:3857'
+  let dest = 'EPSG:4326' 
+
+  // On selected => show/hide popup
+  select.getFeatures().on(['add'], function(e) {       
+    var feature = e.element;console.log(feature.getGeometry().getFirstCoordinate());
+    var content = "";
+    content += "<img src='http://info.rlog.kr:35000/images/"+feature.get("img_1")+"'/>";
+    content += feature.get("addr");
+    //content += '<br/><i>powered by <a href="https://github.com/Viglino/ol-ext" target="ol">ol-ext</a></i>';
+    if (select.getFeatures().getLength()>1) {
+      popup2.show(feature.getGeometry().getFirstCoordinate(), content); 
+    } else {
+      popup.show(feature.getGeometry().getFirstCoordinate(), content); 
     }
   });
-  map.addOverlay(popup);
+  select.getFeatures().on(['remove'], function(e) {
+    popup.hide(); 
+    popup2.hide(); 
+  })
+
+  popup.setPixelPosition([1570,30], 'top-right');
+  
+  popup.setLinkStyle (new ol.style.Style({
+    fill: new ol.style.Fill({ color: '#f96' })
+  }));
 
 </script>
