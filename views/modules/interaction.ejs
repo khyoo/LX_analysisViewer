@@ -1,15 +1,5 @@
 <script type="text/javascript">
 
-  // Select  interaction
-  /*
-  var select = new ol.interaction.Select({
-    hitTolerance: 5,
-    multi: true,
-    condition: ol.events.condition.singleClick
-  });
-  map.addInteraction(select);
-*/
-
   // 마우스 오버 시 효과,
   var hover = new ol.interaction.Select({
     hitTolerance: 10,
@@ -40,36 +30,24 @@
   map.addInteraction(select);
 
   // On selected => show/hide popup
-  select.getFeatures().on(['add'], function(e) {
-   /*
-    var feature = e.element;console.log(feature.getGeometry().getFirstCoordinate());
-    var content = "";
-    content += "<img src='http://info.rlog.kr:35000/images/"+feature.get("img_1")+"'/>";
-    content += feature.get("addr");
-    //content += '<br/><i>powered by <a href="https://github.com/Viglino/ol-ext" target="ol">ol-ext</a></i>';
-    if (select.getFeatures().getLength()>1) {
-      popup2.show(feature.getGeometry().getFirstCoordinate(), content); 
-    } else {
-      popup.show(feature.getGeometry().getFirstCoordinate(), content); 
-    }
-    */
+  select.getFeatures().on(['add'], function(e) {   
     var feature = e.element;
 
-    let html = '';
-    html += '<img src="http://info.rlog.kr:35000/images/'+feature.get('img_1')+'" width="300px" height="300px" />';
-
-    $("#layout-viewer").show();
-    $("#layout-viewer").html(html);
+    let html = '<div style="padding:10px 2px;">';
+    html += '<div style="width:180px;text-align:center;padding:2px;">전방 이미지</div>';
+    html += '<p><img src="http://info.rlog.kr:35000/images/'+feature.get('img_3')+'" width="180px" height="180px" /></p>';
+    html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">좌측 이미지</div>';
+    html += '<p><img src="http://info.rlog.kr:35000/images/'+feature.get('img_2')+'" width="180px" height="180px" /></p>';
+    html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">우측 이미지</div>';
+    html += '<p><img src="http://info.rlog.kr:35000/images/'+feature.get('img_4')+'" width="180px" height="180px" /></p>';
+    html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">후방 이미지</div>';
+    html += '<p><img src="http://info.rlog.kr:35000/images/'+feature.get('img_1')+'" width="180px" height="180px" /></p>';    
+    html += '</div>';
+    
+    $('#images').html(html);
+    $('#imageTab').addClass('active');
+    $('#sidebar2').removeClass('collapsed');
   });
-  select.getFeatures().on(['remove'], function(e) {
-    //popup.hide(); 
-    //popup2.hide(); 
-  })
-
-  popup.setPixelPosition([10,10], 'top-right');
   
-  popup.setLinkStyle (new ol.style.Style({
-    fill: new ol.style.Fill({ color: '#f96' })
-  }));
 
 </script>

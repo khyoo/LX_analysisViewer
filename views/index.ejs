@@ -73,6 +73,30 @@
   </div>
   <!-- END OF SIDEBAR DIV -->
 
+  <!-- START OF SIDEBAR DIV -->
+  <div id="sidebar2" class="sidebar collapsed">
+  
+    <!-- Nav tabs -->
+    <div class="sidebar-tabs">
+      <ul role="tablist">
+        <li><a href="#imageTab" role="tab"><i class="fa fa-car"></i></a></li>        
+      </ul>
+    </div>
+  
+    <!-- Tab panes -->
+    <div class="sidebar-content" style="word-break: break-all;">
+      <div class="sidebar-pane" id="imageTab">
+        <h2 class="sidebar-header">
+          로드뷰 이미지
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h2>                
+        <div id="images">          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END OF SIDEBAR DIV -->
+
   <!-- DIV pour la carte -->
   <div id="map" class="sidebar-map"></div>
 
@@ -151,10 +175,14 @@
       view: view
     });
 
-    var sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'left' });
     var toc = document.getElementById("layers");
     ol.control.LayerSwitcher.renderPanel(map, toc);
+
+    var sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'left' });    
     map.addControl(sidebar);
+
+    var sidebar2 = new ol.control.Sidebar({ element: 'sidebar2', position: 'right' });    
+    map.addControl(sidebar2);
    
     var height = 0;
     function doAnime() {  //console.log(buildingVector.get('visible'));
