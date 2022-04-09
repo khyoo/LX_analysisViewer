@@ -1,37 +1,22 @@
 <script type="text/javascript">
 
-  // A dialog inside a map
-  var dialogMap = new ol.control.Dialog({ hideOnClick: true, className: 'center' });
-  map.addControl(dialogMap);
+  // Popup overlay
+  var popup = new ol.control.Overlay({ hideOnClick: true, className: 'slide-right' });
+  map.addControl(popup);
 
-  // Prompt dialog
-  var dialogPrompt = new ol.control.Dialog();
-
-  dialogPrompt.on('button', function (e) {
-    if (e.button === 'submit') {
-      if (deleteNum != document.getElementById("delNum").value) {
-        dialogMap.show('Please enter a value correctly.');
+  // Set wipe parameters before/after vivibility change
+  popup.on("change:visible", function (e) {
+    // wipe needs to know the size of the element to clip on
+    if (/wipe/.test('slide-right')) {
+      if (e.visible) {
+        $(e.element).css("clip", "rect(0px," + map.getSize()[0] + "px," + map.getSize()[1] + "px,0px)");
       } else {
-        $.ajax({
-          dataType: 'json',
-          url: geoTrackObj + deleteNum,
-          type: 'DELETE',
-          async: false,
-          success: function (result) {
-            alert('The selected layer was deleted!');
-            window.location.reload();
-          },
-          error: function (request, status, error) {
-            alert("REST API로부터 데이터를 받아올 수 없습니다.");
-          }
-        });
+        $(e.element).css("clip", "rect(0px,0px," + map.getSize()[1] + "px,0px)");
       }
     }
+    // Reset clip for others
+    else $(e.element).css("clip", "");
   });
-  dialogPrompt.on('show', function () {
-    dialogMap.close();
-  });
-  map.addControl(dialogPrompt);
 
   // ProgressBar
   var progress = new ol.control.ProgressBar({

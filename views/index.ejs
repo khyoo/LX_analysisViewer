@@ -107,18 +107,6 @@
 
     $('#div_load_image').hide();
 
-    // Popup overlay
-    var popup = new ol.Overlay.FixedPopup ({
-      popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
-      anim: true,
-      closeBox: true
-    });
-    var popup2 = new ol.Overlay.FixedPopup ({
-      popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
-      anim: true,
-      closeBox: true
-    });
-
     var view = new ol.View({
       projection: 'EPSG:3857',      
       center: [14149732.451901091, 4275834.960402206],
@@ -170,8 +158,7 @@
 
     var map = new ol.PerspectiveMap({          
       target: 'map',
-      layers: layers,
-      overlays: [popup, popup2],
+      layers: layers,      
       view: view
     });
 
