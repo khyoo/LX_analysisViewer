@@ -5,6 +5,7 @@
     hitTolerance: 10,
     multi: false,
     condition: ol.events.condition.pointerMove,
+    layers:[roadPOIVector],
     style: new ol.style.Style({
       image: new ol.style.Circle({
         radius: 10,
@@ -23,8 +24,8 @@
 
   // 마우스 클릭 시,
   var select = new ol.interaction.Select({
-    hitTolerance: 5,
-    multi: false,
+    hitTolerance: 5,    
+    layers:[roadPOIVector],
     condition: ol.events.condition.singleClick
   });
   map.addInteraction(select);
@@ -65,10 +66,9 @@
           break;
       }
       popup.showImage('http://info.rlog.kr:35000/images/'+imgName, {
-      coordinate: (/frompoint/.test('slide-right') ? feature.getGeometry().getCoordinates() : null),
-      title: feature.get("panoid") +'<br/>'
-        +feature.get("addr")
-    });
+        //coordinate: (/frompoint/.test('slide-right') ? feature.getGeometry().getCoordinates() : null),
+        title: feature.get("panoid") +'<br/>'+feature.get("addr")
+      });
     });
   });
 
