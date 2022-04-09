@@ -175,10 +175,14 @@
     function doAnime() {  //console.log(buildingVector.get('visible'));
         //buildingVector.setVisible(true);
 
-        map.setPerspective(15);
         if (r3D.animating()) return;
 
         if (height) map.setPerspective(0);
+        else {
+          map.getView().setCenter([14149732.451901091, 4275834.960402206]);
+          map.getView().setZoom(16);
+          map.setPerspective(15);
+        }
 
         height = height ? 0 : "A16";
         r3D.animate({ height: height });
