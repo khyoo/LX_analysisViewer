@@ -228,7 +228,7 @@ var LayerSwitcher = function (_Control) {
 
     createClass(LayerSwitcher, [{
         key: 'setMap',
-        value: function setMap(map) {
+        value: function setMap(map) { console.log("x");
             var _this2 = this;
 
             // Clean up listeners associated with the previous map
@@ -258,7 +258,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'showPanel',
-        value: function showPanel() {
+        value: function showPanel() { console.log("x");
             if (!this.element.classList.contains(this.shownClassName)) {
                 this.element.classList.add(this.shownClassName);
                 this.updateButton();
@@ -303,7 +303,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'updateButton',
-        value: function updateButton() {
+        value: function updateButton() { console.log("x");
             if (this.element.classList.contains(this.shownClassName)) {
                 this.button.textContent = this.collapseLabel;
                 this.button.setAttribute('title', this.collapseTipLabel);
@@ -320,7 +320,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'renderPanel',
-        value: function renderPanel() {
+        value: function renderPanel() { console.log("x");
             this.dispatchEvent('render');
             LayerSwitcher.renderPanel(this.getMap(), this.panel, {
                 groupSelectStyle: this.groupSelectStyle,
@@ -337,7 +337,7 @@ var LayerSwitcher = function (_Control) {
 
     }], [{
         key: 'renderPanel',
-        value: function renderPanel(map, panel, options) {
+        value: function renderPanel(map, panel, options) { console.log("1st");
             // Create the event.
             var render_event = new Event('render');
             // Dispatch the event.
@@ -379,7 +379,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'isBaseGroup',
-        value: function isBaseGroup(grp) {
+        value: function isBaseGroup(grp) { console.log("6th");
             if (grp instanceof LayerGroup) {
                 var lyrs = grp.getLayers().getArray();
                 return lyrs.length && lyrs[0].get('type') === 'base';
@@ -389,7 +389,7 @@ var LayerSwitcher = function (_Control) {
         }
     }, {
         key: 'setGroupVisibility',
-        value: function setGroupVisibility(map) {
+        value: function setGroupVisibility(map) {   console.log("4th");
             // Get a list of groups, with the deepest first
             var groups = LayerSwitcher.getGroupsAndLayers(map, function (l) {
                 return l instanceof LayerGroup && !l.get('combine') && !LayerSwitcher.isBaseGroup(l);
@@ -421,7 +421,7 @@ var LayerSwitcher = function (_Control) {
         }
     }, {
         key: 'setChildVisibility',
-        value: function setChildVisibility(map) {
+        value: function setChildVisibility(map) {   console.log("x");
             // console.log('setChildVisibility');
             var groups = LayerSwitcher.getGroupsAndLayers(map, function (l) {
                 return l instanceof LayerGroup && !l.get('combine') && !LayerSwitcher.isBaseGroup(l);
@@ -448,7 +448,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'ensureTopVisibleBaseLayerShown',
-        value: function ensureTopVisibleBaseLayerShown(map, groupSelectStyle) {
+        value: function ensureTopVisibleBaseLayerShown(map, groupSelectStyle) { console.log("2nd");
             var lastVisibleBaseLyr = void 0;
             LayerSwitcher.forEachRecursive(map, function (lyr, _idx, _arr) {
                 if (lyr.get('type') === 'base' && lyr.getVisible()) {
@@ -466,7 +466,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'getGroupsAndLayers',
-        value: function getGroupsAndLayers(grp, filterFn) {
+        value: function getGroupsAndLayers(grp, filterFn) { console.log("5th");
             var layers = [];
             filterFn = filterFn || function (_lyr, _idx, _arr) {
                 return true;
@@ -494,7 +494,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'setVisible_',
-        value: function setVisible_(map, lyr, visible, groupSelectStyle) {
+        value: function setVisible_(map, lyr, visible, groupSelectStyle) {  console.log("3rd");
             // console.log(lyr.get('title'), visible, groupSelectStyle);
             lyr.setVisible(visible);
             if (visible && lyr.get('type') === 'base') {
@@ -522,7 +522,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'renderLayer_',
-        value: function renderLayer_(map, lyr, idx, options, render) {
+        value: function renderLayer_(map, lyr, idx, options, render) {  //console.log("6");   console.log(lyr.get('title'));
             var li = document.createElement('li');
             var lyrTitle = lyr.get('title');
             var checkboxId = LayerSwitcher.uuid();
@@ -607,7 +607,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'renderLayers_',
-        value: function renderLayers_(map, lyr, elm, options, render) {
+        value: function renderLayers_(map, lyr, elm, options, render) { console.log("7");
             var lyrs = lyr.getLayers().getArray().slice();
             if (options.reverse) lyrs = lyrs.reverse();
             for (var i = 0, l; i < lyrs.length; i++) {
@@ -696,7 +696,7 @@ var LayerSwitcher = function (_Control) {
 
     }, {
         key: 'toggleFold_',
-        value: function toggleFold_(lyr, li) {
+        value: function toggleFold_(lyr, li) {  
             li.classList.remove(CSS_PREFIX + lyr.get('fold'));
             lyr.set('fold', lyr.get('fold') === 'open' ? 'close' : 'open');
             li.classList.add(CSS_PREFIX + lyr.get('fold'));

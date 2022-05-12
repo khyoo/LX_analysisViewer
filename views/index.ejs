@@ -13,7 +13,7 @@
   </div>
 
   <!-- START OF SIDEBAR DIV -->
-  <div id="sidebar" class="sidebar">
+  <div id="sidebar-left" class="sidebar">
   
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
@@ -74,7 +74,7 @@
   <!-- END OF SIDEBAR DIV -->
 
   <!-- START OF SIDEBAR DIV -->
-  <div id="sidebar2" class="sidebar collapsed">
+  <div id="sidebar-right" class="sidebar collapsed">
   
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
@@ -165,10 +165,10 @@
     var toc = document.getElementById("layers");
     ol.control.LayerSwitcher.renderPanel(map, toc);
 
-    var sidebar = new ol.control.Sidebar({ element: 'sidebar', position: 'left' });    
+    var sidebar = new ol.control.Sidebar({ element: 'sidebar-left', position: 'left' });    
     map.addControl(sidebar);
 
-    var sidebar2 = new ol.control.Sidebar({ element: 'sidebar2', position: 'right' });    
+    var sidebar2 = new ol.control.Sidebar({ element: 'sidebar-right', position: 'right' });    
     map.addControl(sidebar2);
    
     var height = 0;

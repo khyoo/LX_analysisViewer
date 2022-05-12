@@ -50,8 +50,8 @@
 
     // GPX vetor layer
     var gpxSource = new ol.source.Vector({
-        url: '/data/j_flow.gpx',
-        format: new ol.format.GPX()
+        url: '/data/flowline.geojson',
+        format: new ol.format.GeoJSON()
     });
     var gpxVector = new ol.layer.VectorImage({
         title: '도로 점수',
