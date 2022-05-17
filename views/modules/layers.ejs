@@ -55,7 +55,7 @@
   });
   var flowlineVector = new ol.layer.VectorImage({
     title: '도로 점수',
-    visible: false,
+    visible: true,
     source: flowlineSource,
     style: styleFn
   });
@@ -71,11 +71,36 @@
       * @param {px}
       * 
       */
-      setCoords_Z(flowlineSource.getFeatures()[0], 'params', 200);
-
+      setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);
+      
       // Set Min/Max from feature
       getMinMax(flowlineSource.getFeatures()[0]);
     }
+  });
+
+  var radius = document.getElementById('radius');
+  radius.addEventListener('input', function() {
+    // console.log(parseInt(radius.value, 10));
+    flowlineVector.setStyle(new ol.style.FlowLine({
+      visible: false,
+      lineCap: 'round',
+      color: function (f, step) {
+        var seg = [];
+        var line = f.getGeometry().getLineString(0);
+        line.getCoordinateAtSeg(step * line.getLength(), seg);
+        var h = (seg[0][2] + seg[0][2]) / 2;
+        var dh = 255 * (h - min) / (max - min);
+        return getColor(dh, parseInt(radius.value, 10));
+      },
+      width: 10,
+      geometry: function (f) {
+        if (f.getGeometry().getType() === 'MultiLineString') {
+          return f.getGeometry().getLineString(0);
+        } else {
+          return f.getGeometry();
+        }
+      }
+    }));
   });
 
   // Set 3D renderer

@@ -10,7 +10,7 @@
     max = Math.round(max / 10 + .4) * 10;
     min = Math.round(min / 10 - .4) * 10;
 
-    //console.log(feature.getGeometry().getCoordinates()[0]);    
+    console.log(feature.getGeometry().getCoordinates()[0]);    
   }
 
   // Z 코드 설정
@@ -25,9 +25,9 @@
   }
 
   // Get the line color at dh
-  function getColor(dh) {
-    if (dh < 128) return [2 * dh, 160 - dh, 0];
-    else return [255, (dh - 128) * 4, (dh - 128) * 1.5];
+  function getColor(dh, fa) {
+    if (dh < 128) return [fa * dh, 160 - dh, 0];
+    else return [255, (dh - 128) * fa, (dh - 128) * fa/2];
   }
 
   // The style function
@@ -41,7 +41,7 @@
         line.getCoordinateAtSeg(step * line.getLength(), seg);
         var h = (seg[0][2] + seg[0][2]) / 2;
         var dh = 255 * (h - min) / (max - min);
-        return getColor(dh);
+        return getColor(dh, 3);
       },
       width: 10,
       geometry: function (f) {
