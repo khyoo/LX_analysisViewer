@@ -8,7 +8,7 @@
 </script>
 
 <body>
-  <div id="div_load_image">
+  <div id="div_load_image" class="loadingArea">
     <img src="/images/loading.gif" style="width:300px; height:300px;">
   </div>
 
@@ -46,6 +46,9 @@
         <div>
           <label>w1: factor</label>
           <input id="radius" type="range" min="1" max="10" step="1" value="3"/>
+        </div>
+        <div>
+          <input type="checkbox" id="chkTest" value="11" /> 레이어 테스트
         </div>
       </div>
   
@@ -154,8 +157,7 @@
         fold: 'open',
         layers: [
           buildingVector,          
-          roadPOIVector,
-          flowlineVector
+          roadPOIVector
         ]
       })
     ];
@@ -176,9 +178,7 @@
     map.addControl(sidebar2);
    
     var height = 0;
-    function doAnime() {  //console.log(buildingVector.get('visible'));
-        //buildingVector.setVisible(true);
-
+    function doAnime() { 
         if (r3D.animating()) return;
 
         if (height) map.setPerspective(0);
@@ -193,6 +193,8 @@
     }
 
     
+    
+    
   </script>
 
   <!--
@@ -200,6 +202,8 @@
   <% include ./modules/contextMenu %>
   -->
 
+  <% include ./modules/init %>
+  
   <% include ./modules/interaction %>  
   <% include ./modules/misc %>
 

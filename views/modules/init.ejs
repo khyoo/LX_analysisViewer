@@ -1,0 +1,113 @@
+<script type="text/javascript">
+
+var vectorSource22 = new ol.source.Vector({
+  projection: 'EPSG:4326',
+  format: new ol.format.GeoJSON(),
+  loader: function(extent, resolution, projection) {
+     var proj = projection.getCode();
+     var url = 'http://info.rlog.kr:8880/rest/mfcollection/track_etri_1221_1';
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', url);
+     var onError = function() {
+      vectorSource22.removeLoadedExtent(extent);
+     }
+     xhr.onerror = onError;
+     xhr.onload = function() {
+       if (xhr.status == 200) {
+        vectorSource22.addFeatures(
+          vectorSource22.getFormat().readFeatures(xhr.responseText));
+       } else {
+         onError();
+       }
+     }
+     xhr.send();
+   },
+   strategy: bbox
+ });
+
+      var roadPOIVector2 = new ol.layer.Vector({
+        title: '도로 Point2',
+        visible: true,
+        source: vectorSource22,
+        style: new ol.style.Style({
+          image: new ol.style.Circle({
+            radius: 5,
+            snapToPixel: false,
+            stroke: new ol.style.Stroke({
+              //color: "#6C757D",
+              color: "#900",
+              width: 2
+            })
+          })
+        }),
+        //maxResolution: 25,
+        //zIndex: 1000
+      });
+      map.addLayer(roadPOIVector2);
+
+
+  // $.ajax({
+  //   dataType: 'json',
+  //   url: 'http://info.rlog.kr:8880/rest/mfcollection/track_etri_1221_1',
+  //   type: 'GET',
+  //   async: true,
+  //   beforeSend: function () {
+  //     $('#div_load_image').show();
+  //   },
+  //   success: function (result) {
+  //     console.log(result);
+  //     $('#div_load_image').hide();
+
+  //     var roadPOISource2 = new ol.source.Vector({
+  //       //features: (new ol.format.GeoJSON()).readFeatures(result)
+  //       url: '/data/poi.geojson',
+  //       projection: 'EPSG:3857',
+  //       format: new ol.format.GeoJSON()
+  //     });
+
+  //     var roadPOIVector2 = new ol.layer.Vector({
+  //       title: '도로 Point2',
+  //       visible: true,
+  //       source: roadPOISource2,
+  //       style: new ol.style.Style({
+  //         image: new ol.style.Circle({
+  //           radius: 5,
+  //           snapToPixel: false,
+  //           stroke: new ol.style.Stroke({
+  //             //color: "#6C757D",
+  //             color: "#900",
+  //             width: 2
+  //           })
+  //         })
+  //       }),
+  //       maxResolution: 25,
+  //       zIndex: 1000
+  //     });
+  //     map.addLayer(roadPOIVector2);
+  //     // $('#chkTest').on('click', function () {
+  //     //   if (flowlineVector.getVisible()) {
+  //     //     flowlineVector.setVisible(false);
+  //     //   } else {
+  //     //     flowlineVector.setVisible(true);
+  //     //   }
+  //     //   // var isLayer = false;
+  //     //   // map.getAllLayers().forEach(function(p) {
+  //     //   //   //console.log(p.get('title'));
+  //     //   //   if(p.get('title') == '도로 점수') {
+  //     //   //     isLayer = true;
+  //     //   //   }
+  //     //   // });
+  //     //   // if(!isLayer){
+  //     //   //   map.addLayer(flowlineVector);
+  //     //   // } else {
+  //     //   //   map.removeLayer(flowlineVector);
+  //     //   // }
+  //     // });
+  //   },
+  //   error: function (request, status, error) {
+  //     alert("REST API로부터 데이터를 받아올 수 없습니다.");
+  //   }
+  // });
+
+
+</script>
