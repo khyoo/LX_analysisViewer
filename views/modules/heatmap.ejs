@@ -1,0 +1,30 @@
+<script type="text/javascript">
+
+  var hmap_blur = document.getElementById('hmap_blur');
+  var hmap_radius = document.getElementById('hmap_radius');
+
+  var hmap_vector = new ol.layer.Heatmap({
+    source: new ol.source.Vector({
+      url: '/data/poi.geojson',
+      format: new ol.format.GeoJSON()
+    }),
+    blur: parseInt(hmap_blur.value, 10),
+    radius: parseInt(hmap_radius.value, 10)
+  });
+
+  hmap_vector.getSource().on('addfeature', function (event) {
+    // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
+    // standards-violating <magnitude> tag in each Placemark.  We extract it from
+    // the Placemark's name instead.        
+    event.feature.set('weight', event.feature.getProperties().panoid.substring(8) / 100);
+  });
+
+  hmap_blur.addEventListener('input', function () {
+    hmap_vector.setBlur(parseInt(hmap_blur.value, 10));
+  });
+
+  hmap_radius.addEventListener('input', function () {
+    hmap_vector.setRadius(parseInt(hmap_radius.value, 10));
+  });
+
+</script>
