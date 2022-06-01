@@ -27,10 +27,11 @@
     projection: 'EPSG:3857',
     format: new ol.format.GeoJSON()
   });
-
+  console.log("roadAllPOISource");
+  console.log(roadAllPOISource);
   var roadAllPOIVector = new ol.layer.Vector({
     title: '전체 도로 Point',
-    visible: false,
+    visible: true,
     source: roadAllPOISource,
     style: new ol.style.Style({
       image: new ol.style.Circle({
@@ -47,6 +48,17 @@
     zIndex: 1000
   });
   //map.addLayer(poiVector);
+  console.log("roadAllPOIVector");
+  console.log(roadAllPOIVector.get('source'));
+
+  roadAllPOISource.once('change', function (e) {
+    if (roadAllPOISource.getState() === 'ready') {
+      console.log("roadAllPOISource2");
+      console.log(roadAllPOISource);
+      $('#div_load_image').hide();
+    }
+  });
+
 
   // Create layer
   var roadPOISource = new ol.source.Vector({

@@ -1,11 +1,11 @@
 <script type="text/javascript">
 
 var vectorSource22 = new ol.source.Vector({
-  projection: 'EPSG:4326',
+  projection: 'EPSG:3857',
   format: new ol.format.GeoJSON(),
   loader: function(extent, resolution, projection) {
      var proj = projection.getCode();
-     var url = 'http://info.rlog.kr:8880/rest/mfcollection/track_etri_1221_1';
+     var url = 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all';
      var xhr = new XMLHttpRequest();
      xhr.open('GET', url);
      var onError = function() {
@@ -13,7 +13,7 @@ var vectorSource22 = new ol.source.Vector({
      }
      xhr.onerror = onError;
      xhr.onload = function() {
-       if (xhr.status == 200) {
+       if (xhr.status == 200) { //console.log(xhr.responseText);
         vectorSource22.addFeatures(
           vectorSource22.getFormat().readFeatures(xhr.responseText));
        } else {
@@ -40,11 +40,11 @@ var vectorSource22 = new ol.source.Vector({
             })
           })
         }),
-        //maxResolution: 25,
-        //zIndex: 1000
+        maxResolution: 25,
+        zIndex: 1000
       });
       map.addLayer(roadPOIVector2);
-
+      console.log(roadPOIVector2);
 
   // $.ajax({
   //   dataType: 'json',
