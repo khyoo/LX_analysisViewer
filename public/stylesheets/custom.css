@@ -96,6 +96,7 @@ html, body {
 }
 
 .loadingArea {
+  display: none;
   position: absolute;
   top: 32%;
   left: 42%;

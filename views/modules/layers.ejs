@@ -31,7 +31,7 @@
   console.log(roadAllPOISource);
   var roadAllPOIVector = new ol.layer.Vector({
     title: '전체 도로 Point',
-    visible: true,
+    visible: false,
     source: roadAllPOISource,
     style: new ol.style.Style({
       image: new ol.style.Circle({
@@ -69,7 +69,7 @@
 
   var roadPOIVector = new ol.layer.Vector({
     title: '도로 점수 Point',
-    visible: true,
+    visible: false,
     source: roadPOISource,
     style: new ol.style.Style({
       image: new ol.style.Circle({

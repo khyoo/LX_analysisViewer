@@ -1,34 +1,76 @@
 <script type="text/javascript">
 
-var vectorSource22 = new ol.source.Vector({
-  projection: 'EPSG:3857',
-  format: new ol.format.GeoJSON(),
-  loader: function(extent, resolution, projection) {
-     var proj = projection.getCode();
-     var url = 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all';
-     var xhr = new XMLHttpRequest();
-     xhr.open('GET', url);
-     var onError = function() {
-      vectorSource22.removeLoadedExtent(extent);
-     }
-     xhr.onerror = onError;
-     xhr.onload = function() {
-       if (xhr.status == 200) { //console.log(xhr.responseText);
-        vectorSource22.addFeatures(
-          vectorSource22.getFormat().readFeatures(xhr.responseText));
-       } else {
-         onError();
-       }
-     }
-     xhr.send();
-   },
-   //strategy: bbox
- });
+// var vectorSource22 = new ol.source.Vector({
+//   projection: 'EPSG:3857',
+//   format: new ol.format.GeoJSON(),
+//   loader: function(extent, resolution, projection) {
+//      var proj = projection.getCode();
+//      var url = 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all';
+//      var xhr = new XMLHttpRequest();
+//      xhr.open('GET', url);
+//      var onError = function() {
+//       vectorSource22.removeLoadedExtent(extent);
+//      }
+//      xhr.onerror = onError;
+//      xhr.onload = function() {
+//        if (xhr.status == 200) { //console.log(xhr.responseText);
+//         vectorSource22.addFeatures(
+//           vectorSource22.getFormat().readFeatures(xhr.responseText));
 
-      var roadPOIVector2 = new ol.layer.Vector({
-        title: '도로 Point2',
-        visible: true,
-        source: vectorSource22,
+//           var roadPOIVector2 = new ol.layer.Vector({
+//         title: '도로 Point2',
+//         visible: true,
+//         source: vectorSource22,
+//         style: new ol.style.Style({
+//           image: new ol.style.Circle({
+//             radius: 5,
+//             snapToPixel: false,
+//             stroke: new ol.style.Stroke({
+//               //color: "#6C757D",
+//               color: "#900",
+//               width: 2
+//             })
+//           })
+//         }),
+//         maxResolution: 25,
+//         zIndex: 1000
+//       });
+//       map.addLayer(roadPOIVector2);
+//       console.log(roadPOIVector2);
+//        } else {
+//          onError();
+//        }
+//      }
+//      xhr.send();
+//    },
+//    //strategy: bbox
+//  });
+
+      var roadPOISource2 = new ol.source.Vector({
+        //features: (new ol.format.GeoJSON()).readFeatures(result),
+        url: 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all',
+        projection: 'EPSG:3857',
+        format: new ol.format.GeoJSON()
+      });
+
+      roadPOISource2.on('featuresloadstart', function (e) {
+        console.log("roadAllPOISource2dsfdsfds11");
+        $('#div_load_image').show();
+       
+      });
+
+      roadPOISource2.on('featuresloadend', function (e) {
+        console.log("roadAllPOISource2dsfdsfds11");
+        $('#div_load_image').hide();
+        if (roadPOISource2.getState() === 'ready') {
+          console.log("roadAllPOISource2dsfdsfds");
+         
+        }
+      });
+
+      var roadPOIVector2 = new ol.layer.Vector({        
+        visible: false,
+        source: roadPOISource2,
         style: new ol.style.Style({
           image: new ol.style.Circle({
             radius: 5,
@@ -44,11 +86,41 @@ var vectorSource22 = new ol.source.Vector({
         zIndex: 1000
       });
       map.addLayer(roadPOIVector2);
-      console.log(roadPOIVector2);
+
+      $('#chkTest1').on('click', function () {
+        if (roadPOIVector2.getVisible()) {
+          roadPOIVector2.setVisible(false);
+          $('.hmapDiv1').hide();
+        } else {
+          roadPOIVector2.setVisible(true);
+          $('.hmapDiv1').show();
+        }      
+      });
+
+      $('#chkTest2').on('click', function () {
+        if (roadPOIVector2.getVisible()) {
+          roadPOIVector2.setVisible(false);
+          $('.hmapDiv2').hide();
+        } else {
+          roadPOIVector2.setVisible(true);
+          $('.hmapDiv2').show();
+        }      
+      });
+
+      $('#chkTest3').on('click', function () {
+        if (roadPOIVector2.getVisible()) {
+          roadPOIVector2.setVisible(false);
+          $('.hmapDiv3').hide();
+        } else {
+          roadPOIVector2.setVisible(true);
+          $('.hmapDiv3').show();
+        }      
+      });
+
 
   // $.ajax({
   //   dataType: 'json',
-  //   url: 'http://info.rlog.kr:8880/rest/mfcollection/track_etri_1221_1',
+  //   url: 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all',
   //   type: 'GET',
   //   async: true,
   //   beforeSend: function () {
@@ -59,10 +131,17 @@ var vectorSource22 = new ol.source.Vector({
   //     $('#div_load_image').hide();
 
   //     var roadPOISource2 = new ol.source.Vector({
-  //       //features: (new ol.format.GeoJSON()).readFeatures(result)
-  //       url: '/data/poi.geojson',
+  //       //features: (new ol.format.GeoJSON()).readFeatures(result),
+  //       url: 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all',
   //       projection: 'EPSG:3857',
   //       format: new ol.format.GeoJSON()
+  //     });
+
+  //     roadPOISource2.once('featuresloadstart', function (e) {console.log("roadAllPOISource2dsfdsfds11");
+  //       if (roadPOISource2.getState() === 'ready') {
+  //         console.log("roadAllPOISource2dsfdsfds");
+         
+  //       }
   //     });
 
   //     var roadPOIVector2 = new ol.layer.Vector({
@@ -84,25 +163,25 @@ var vectorSource22 = new ol.source.Vector({
   //       zIndex: 1000
   //     });
   //     map.addLayer(roadPOIVector2);
-  //     // $('#chkTest').on('click', function () {
-  //     //   if (flowlineVector.getVisible()) {
-  //     //     flowlineVector.setVisible(false);
-  //     //   } else {
-  //     //     flowlineVector.setVisible(true);
-  //     //   }
-  //     //   // var isLayer = false;
-  //     //   // map.getAllLayers().forEach(function(p) {
-  //     //   //   //console.log(p.get('title'));
-  //     //   //   if(p.get('title') == '도로 점수') {
-  //     //   //     isLayer = true;
-  //     //   //   }
-  //     //   // });
-  //     //   // if(!isLayer){
-  //     //   //   map.addLayer(flowlineVector);
-  //     //   // } else {
-  //     //   //   map.removeLayer(flowlineVector);
-  //     //   // }
-  //     // });
+      // $('#chkTest').on('click', function () {
+      //   if (flowlineVector.getVisible()) {
+      //     flowlineVector.setVisible(false);
+      //   } else {
+      //     flowlineVector.setVisible(true);
+      //   }
+      //   // var isLayer = false;
+      //   // map.getAllLayers().forEach(function(p) {
+      //   //   //console.log(p.get('title'));
+      //   //   if(p.get('title') == '도로 점수') {
+      //   //     isLayer = true;
+      //   //   }
+      //   // });
+      //   // if(!isLayer){
+      //   //   map.addLayer(flowlineVector);
+      //   // } else {
+      //   //   map.removeLayer(flowlineVector);
+      //   // }
+      // });
   //   },
   //   error: function (request, status, error) {
   //     alert("REST API로부터 데이터를 받아올 수 없습니다.");

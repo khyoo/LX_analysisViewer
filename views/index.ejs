@@ -9,7 +9,7 @@
 
 <body>
   <div id="div_load_image" class="loadingArea">
-    <img src="/images/loading.gif" style="width:300px; height:300px;">
+    <img src="/images/loading7.gif" style="width:400px; height:400px;">
   </div>
 
   <!-- START OF SIDEBAR DIV -->
@@ -37,6 +37,42 @@
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h2>
         <div id="layers" class="layer-switcher"></div>
+        <div>
+          <input type="checkbox" id="chkTest1" value="11" /> 레이어 테스트1
+          <div class="hmapDiv1">            
+            <label>HeatMap radius size</label>
+            <br/>            
+            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+            <br/>
+            <label>HeatMap blur size</label>
+            <br/>
+            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+          </div>
+        </div>
+        <div>
+          <input type="checkbox" id="chkTest2" value="11" /> 레이어 테스트2
+          <div class="hmapDiv2">
+            <label>HeatMap radius size</label>
+            <br/>            
+            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+            <br/>
+            <label>HeatMap blur size</label>
+            <br/>
+            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+          </div>
+        </div>
+        <div>
+          <input type="checkbox" id="chkTest3" value="11" /> 레이어 테스트3
+          <div class="hmapDiv3">
+            <label>HeatMap radius size</label>
+            <br/>            
+            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+            <br/>
+            <label>HeatMap blur size</label>
+            <br/>
+            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+          </div>
+        </div>
         <div style="margin-left: 100px;">
           <button type="button" class="btn btn-secondary" onclick="javascript:doAnime()">2.5D 분석</button>
         </div>
@@ -47,20 +83,10 @@
           <label>w1: factor</label>
           <input id="radius" type="range" min="1" max="10" step="1" value="3"/>
         </div>
-        <!--
-        <div>
-          <input type="checkbox" id="chkTest" value="11" /> 레이어 테스트
-        </div>
-        -->
-        <div>
-          <br/><br/><br/>
-          <label>HeatMap radius size</label><br/>
-          <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>
-          <br/>
-          <br/>
-          <label>HeatMap blur size</label><br/>
-          <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
-        </div>
+        
+        
+        
+        
       </div>
   
       <div class="sidebar-pane" id="trackTimes">
@@ -124,7 +150,10 @@
    
   <script type="text/javascript">
 
-    $('#div_load_image').show();
+    //$('#div_load_image').hide();
+    $('.hmapDiv1').hide();
+    $('.hmapDiv2').hide();
+    $('.hmapDiv3').hide();
 
     var view = new ol.View({
       projection: 'EPSG:3857',      
