@@ -46,24 +46,20 @@
 //    //strategy: bbox
 //  });
 
-      var roadPOISource2 = new ol.source.Vector({
-        //features: (new ol.format.GeoJSON()).readFeatures(result),
+      var roadPOISource2 = new ol.source.Vector({        
         url: 'http://info.rlog.kr:8880/rest/shp2Geojson/jeonju_road_poi_all',
         projection: 'EPSG:3857',
         format: new ol.format.GeoJSON()
       });
 
-      roadPOISource2.on('featuresloadstart', function (e) {
-        console.log("roadAllPOISource2dsfdsfds11");
-        $('#div_load_image').show();
-       
+      roadPOISource2.on('featuresloadstart', function (e) {        
+        $('#div_load_image').show();       
       });
 
-      roadPOISource2.on('featuresloadend', function (e) {
-        console.log("roadAllPOISource2dsfdsfds11");
+      roadPOISource2.on('featuresloadend', function (e) {        
         $('#div_load_image').hide();
         if (roadPOISource2.getState() === 'ready') {
-          console.log("roadAllPOISource2dsfdsfds");
+          // TO-DO
          
         }
       });
@@ -87,16 +83,79 @@
       });
       map.addLayer(roadPOIVector2);
 
-      $('#chkTest1').on('click', function () {
+      $('#allRoadPoiChk').on('click', function () {
         if (roadPOIVector2.getVisible()) {
-          roadPOIVector2.setVisible(false);
-          $('.hmapDiv1').hide();
+          roadPOIVector2.setVisible(false);          
         } else {
           roadPOIVector2.setVisible(true);
+        }      
+      });
+
+      map.addLayer(roadPOIVector);
+      map.addLayer(hmapVector);
+
+      $('#psLayerChk').on('click', function () {
+        if($('#psLayerChk').is(':checked')) {
+          $('#psPointChk').prop('checked', true);
+          roadPOIVector.setVisible(true);
+
+          $('#psHmapChk').prop('checked', true);
+          hmapVector.setVisible(true);
+          $('.hmapDiv1').show();
+        } else {
+          $('#psPointChk').prop('checked', false);
+          roadPOIVector.setVisible(false);
+
+          $('#psHmapChk').prop('checked', false);
+          hmapVector.setVisible(false);
+          $('.hmapDiv1').hide();
+        }
+      });
+
+      $('#psPointChk').on('click', function () {
+        if (roadPOIVector.getVisible()) {
+          roadPOIVector.setVisible(false);
+        } else {
+          roadPOIVector.setVisible(true);
+        }      
+      });
+      
+      $('#psHmapChk').on('click', function () {
+        if (hmapVector.getVisible()) {          
+          hmapVector.setVisible(false);
+          $('.hmapDiv1').hide();
+        } else {          
+          hmapVector.setVisible(true);
           $('.hmapDiv1').show();
         }      
       });
 
+      map.addLayer(roadPOILabelVector);
+      $('#psHmapScoreChk').on('click', function () {
+        if (roadPOILabelVector.getVisible()) {
+          roadPOILabelVector.setVisible(false);
+        } else {
+          roadPOILabelVector.setVisible(true);
+        }      
+      });
+
+      $('#psHmapChk2').on('click', function () {
+        if (!$('#psHmapChk2').is(':checked')) {                    
+          $('.hmapDiv2').hide();
+        } else {                    
+          $('.hmapDiv2').show();
+        }      
+      });
+
+      $('#psHmapChk3').on('click', function () {
+        if (!$('#psHmapChk3').is(':checked')) {                    
+          $('.hmapDiv3').hide();
+        } else {      
+          $('.hmapDiv3').show();
+        }      
+      });
+
+      /*
       $('#chkTest2').on('click', function () {
         if (roadPOIVector2.getVisible()) {
           roadPOIVector2.setVisible(false);
@@ -116,7 +175,7 @@
           $('.hmapDiv3').show();
         }      
       });
-
+*/
 
   // $.ajax({
   //   dataType: 'json',

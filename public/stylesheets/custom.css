@@ -111,6 +111,28 @@ html, body {
   text-align: center
 }
 
+.grpLayer-title {
+  margin-top: 5px;
+  margin-left: 10px;
+  line-height: 1.8em;
+  font-weight: bold;
+}
+
+.grpLayer-anal {
+  margin-left: 20px;
+  line-height: 1.5em;
+  margin-bottom: 5px;
+}
+
+.grpLayer-sub-anal {
+  margin-left: 15px;
+  line-height: 1.5em;
+}
+
+.rangebar {
+  margin-top: 5px;
+}
+
 /* popup style */
 .ol-popup {
   max-width: 300px;

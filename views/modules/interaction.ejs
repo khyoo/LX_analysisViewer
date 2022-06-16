@@ -73,6 +73,34 @@
     });
   });
 
+
+  map.on('moveend', function(e) {
+    console.log(map.getView().getZoom());
+    if(map.getView().getZoom() > 16) {
+      roadPOIVector.setStyle(new ol.style.Style({    
+        image: new ol.style.Circle({
+          radius: 5,
+          snapToPixel: false,
+          stroke: new ol.style.Stroke({          
+            color: "#900",
+            width: 2
+          })
+        })      
+      }));
+    } else if(map.getView().getZoom() > 13 && map.getView().getZoom() < 16) {
+      roadPOIVector.setStyle(new ol.style.Style({    
+        image: new ol.style.Circle({
+          radius: 1,
+          snapToPixel: false,
+          stroke: new ol.style.Stroke({          
+            color: "#900",
+            width: 2
+          })
+        })      
+      }));
+    }
+    //Your code here
+  });
   
   
 

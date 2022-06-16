@@ -33,57 +33,127 @@
     <div class="sidebar-content" style="word-break: break-all;">
       <div class="sidebar-pane active" id="tracks">
         <h2 class="sidebar-header">
-          Layers & Tracks
+          Layers
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h2>
         <div id="layers" class="layer-switcher"></div>
-        <div>
-          <input type="checkbox" id="chkTest1" value="11" /> 레이어 테스트1
-          <div class="hmapDiv1">            
-            <label>HeatMap radius size</label>
-            <br/>            
-            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
-            <br/>
-            <label>HeatMap blur size</label>
-            <br/>
-            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+        
+        <div class="grpLayer-title">
+          ▶ 기본 레이어
+        </div>
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="allRoadPoiChk" /> 전체 도로 Point          
+        </div>
+
+        <div class="grpLayer-title">
+          ▶ 분석 레이어
+        </div>
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어1
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psPointChk" /> Point 레이어            
+          </div>
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psHmapChk" /> HeatMap 레이어            
+            <div class="rangebar hmapDiv1">
+              <div class="grpLayer-sub-anal">
+                <input type="checkbox" id="psHmapScoreChk" /> HeatMap 점수
+              </div>
+              <label>HeatMap radius size</label>
+              <br/>            
+              <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+              <br/>
+              <label>HeatMap blur size</label>
+              <br/>
+              <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+            </div>
           </div>
         </div>
-        <div>
-          <input type="checkbox" id="chkTest2" value="11" /> 레이어 테스트2
+
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어2
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psPointChk2" /> Point 레이어            
+          </div>
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psHmapChk2" /> HeatMap 레이어            
+            <div class="rangebar hmapDiv2">
+              <div class="grpLayer-sub-anal">
+                <input type="checkbox" id="psHmapScoreChk2" /> HeatMap 점수
+              </div>
+              <label>HeatMap radius size</label>
+              <br/>            
+              <input id="hmap_radius2" type="range" min="1" max="50" step="1" value="15"/>            
+              <br/>
+              <label>HeatMap blur size</label>
+              <br/>
+              <input id="hmap_blur2" type="range" min="1" max="50" step="1" value="15"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="psLayerChk3" /> 보행점수 레이어3
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psPointChk3" /> Point 레이어            
+          </div>
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psHmapChk3" /> HeatMap 레이어            
+            <div class="rangebar hmapDiv3">
+              <div class="grpLayer-sub-anal">
+                <input type="checkbox" id="psHmapScoreChk3" /> HeatMap 점수
+              </div>
+              <label>HeatMap radius size</label>
+              <br/>            
+              <input id="hmap_radius3" type="range" min="1" max="50" step="1" value="15"/>            
+              <br/>
+              <label>HeatMap blur size</label>
+              <br/>
+              <input id="hmap_blur3" type="range" min="1" max="50" step="1" value="15"/>
+            </div>
+          </div>
+        </div>
+        <!--
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="chkTest2" /> 레이어 테스트2
           <div class="hmapDiv2">
             <label>HeatMap radius size</label>
             <br/>            
-            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+            <input id="hmap_radius2" type="range" min="1" max="50" step="1" value="15"/>            
             <br/>
             <label>HeatMap blur size</label>
             <br/>
-            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+            <input id="hmap_blur2" type="range" min="1" max="50" step="1" value="15"/>
           </div>
         </div>
-        <div>
-          <input type="checkbox" id="chkTest3" value="11" /> 레이어 테스트3
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="chkTest3" /> 레이어 테스트3
           <div class="hmapDiv3">
             <label>HeatMap radius size</label>
             <br/>            
-            <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+            <input id="hmap_radius3" type="range" min="1" max="50" step="1" value="15"/>            
             <br/>
             <label>HeatMap blur size</label>
             <br/>
-            <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+            <input id="hmap_blur3" type="range" min="1" max="50" step="1" value="15"/>
           </div>
         </div>
+        -->
+        <!--
         <div style="margin-left: 100px;">
           <button type="button" class="btn btn-secondary" onclick="javascript:doAnime()">2.5D 분석</button>
-        </div>
+        </div>        
         <div style="margin: 20px;">
           지도 회전 : Alt+Shift+Drag
         </div>
+        -->
+        
+        <!--
         <div>
           <label>w1: factor</label>
           <input id="radius" type="range" min="1" max="10" step="1" value="3"/>
         </div>
-        
+        -->
         
         
         
@@ -190,6 +260,7 @@
         visible: false,
         source: new ol.source.OSM()
       }),
+      /*
       new ol.layer.Group({
         // A layer must have a title to appear in the layerswitcher
         title: 'Spatial 객체',
@@ -200,13 +271,16 @@
           buildingVector,          
           roadAllPOIVector,
           roadPOIVector,
+          roadPOILabelVector,
           flowlineVector,
           hmap_vector
         ]
       })
+      */
     ];
 
-    var map = new ol.PerspectiveMap({          
+    //var map = new ol.PerspectiveMap({          
+    var map = new ol.Map({          
       target: 'map',
       layers: layers,      
       view: view
@@ -222,7 +296,7 @@
     map.addControl(sidebar2);
    
     var height = 0;
-    function doAnime() { 
+    function doAnime() {       
         if (r3D.animating()) return;
 
         if (height) map.setPerspective(0);
@@ -235,8 +309,8 @@
         height = height ? 0 : "A16";
         r3D.animate({ height: height });
     }
+   
 
-    
   </script>
 
   <!--
