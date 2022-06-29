@@ -2,15 +2,17 @@
 
   // Calculate the min/max elevation on the line
   var min, max;
-  function getMinMax(feature) {
-    feature.getGeometry().getCoordinates()[0].forEach(function (p) {
-      max = Math.max(max || -Infinity, p[2]);
-      min = Math.min(min || Infinity, p[2]);
-    });
-    max = Math.round(max / 10 + .4) * 10;
-    min = Math.round(min / 10 - .4) * 10;
-
-    console.log(feature.getGeometry().getCoordinates()[0]);    
+  function getMinMax(features) {
+    features.forEach(function (feature) {
+      feature.getGeometry().getCoordinates()[0].forEach(function (p) {
+        max = Math.max(max || -Infinity, p[2]);
+        min = Math.min(min || Infinity, p[2]);
+      });
+      max = Math.round(max / 10 + .4) * 10;
+      min = Math.round(min / 10 - .4) * 10;
+      
+      // console.log(feature.getGeometry().getCoordinates()[0]);    
+    });    
   }
 
   // Z 코드 설정
@@ -22,6 +24,22 @@
       c1[i].push(c2[i][Object.keys(c2[i])[0]] * px);
     }
     feature.getGeometry().setCoordinates([c1]);
+  }
+
+  // Z 코드 설정-랜덤 데이터
+  function setCoords_Z2(features, px) {
+    features.forEach(function (feature) {
+      let rand1;
+      var c1 = feature.getGeometry().getCoordinates()[0];
+      
+      for (var i = 0; i < feature.getGeometry().getCoordinates()[0].length; i++) {
+        rand1 = Math.random();
+        c1[i].push(rand1 * px);
+      }
+      feature.getGeometry().setCoordinates([c1]);
+
+      // console.log(feature.getGeometry().getCoordinates()[0]); 
+    });
   }
 
   // Get the line color at dh

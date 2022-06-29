@@ -12,7 +12,8 @@
     }),
     //blur: parseInt(hmap_blur.value, 10),
     blur: parseInt(15, 10),
-    radius: parseInt(hmap_radius.value, 10)
+    // radius: parseInt(hmap_radius.value, 10)
+    radius: parseInt(15, 10)
   });
 
   hmapVector.getSource().on('addfeature', function (event) {
@@ -44,9 +45,9 @@
     });
   });
 
-  hmap_radius.addEventListener('input', function () {
-    hmapVector.setRadius(parseInt(hmap_radius.value, 10));
-  });
+  // hmap_radius.addEventListener('input', function () {
+  //   hmapVector.setRadius(parseInt(hmap_radius.value, 10));
+  // });
 
   function weightsFunc(w, p) {
     return (w * p * 50).toFixed(2).toString();

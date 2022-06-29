@@ -48,7 +48,7 @@
           ▶ 분석 레이어
         </div>
         <div class="grpLayer-anal">
-          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어1
+          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어(포인트)
           <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psPointChk" /> Point 레이어 
             <div class="psPointDiv">
@@ -62,10 +62,12 @@
           <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psHmapChk" /> HeatMap 레이어            
             <div class="rangebar hmapDiv1">              
+              <!--
               <label>HeatMap radius size</label>
               <br/>            
               <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
               <br/>
+              -->
               <label>HeatMap blur size</label>
               <br/>
               <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
@@ -74,27 +76,27 @@
         </div>
 
         <div class="grpLayer-anal">
-          <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어2
+          <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어(라인)          
           <div class="grpLayer-sub-anal">
-            <input type="checkbox" id="psPointChk2" /> Point 레이어            
-          </div>
-          <div class="grpLayer-sub-anal">
-            <input type="checkbox" id="psHmapChk2" /> HeatMap 레이어            
+            <input type="checkbox" id="psHmapChk2" /> 도로 네트워크
+            <div class="psLineDiv">
+              <span class="layer-edit"><a href="#" id="save2" title="저장"><i class="fas fa-edit"></i></a></span>            
+              <span class="layer-download"><a href="#" id="down2" title="다운로드"><i class="fas fa-download"></i></a></span>            
+            </div>
             <div class="rangebar hmapDiv2">
+              <!--
               <div class="grpLayer-sub-anal">
-                <input type="checkbox" id="psHmapScoreChk2" /> HeatMap 점수
+                <input type="checkbox" id="psHmapScoreChk2" /> 도로 네트워크 점수
               </div>
-              <label>HeatMap radius size</label>
+              -->
+              <label>도로 히트맵 Control</label>
               <br/>            
-              <input id="hmap_radius2" type="range" min="1" max="50" step="1" value="15"/>            
-              <br/>
-              <label>HeatMap blur size</label>
-              <br/>
-              <input id="hmap_blur2" type="range" min="1" max="50" step="1" value="15"/>
+              <input id="flowline_radius" type="range" min="1" max="50" step="1" value="15"/>            
+              <br/>              
             </div>
           </div>
         </div>
-
+<!--
         <div class="grpLayer-anal">
           <input type="checkbox" id="psLayerChk3" /> 보행점수 레이어3
           <div class="grpLayer-sub-anal">
@@ -116,6 +118,9 @@
             </div>
           </div>
         </div>
+-->
+
+
         <!--
         <div class="grpLayer-anal">
           <input type="checkbox" id="chkTest2" /> 레이어 테스트2

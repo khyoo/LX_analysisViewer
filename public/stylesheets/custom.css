@@ -129,7 +129,7 @@ html, body {
   line-height: 1.5em;
 }
 
-.psPointDiv {
+.psPointDiv,.psLineDiv {
   display: none;
 }
 

@@ -106,10 +106,29 @@
     }
   });
 
+
+  map.addLayer(flowlineVector);
+
+  $('#psLayerChk2').on('click', function () {
+    if ($('#psLayerChk2').is(':checked')) {
+      $('#psHmapChk2').prop('checked', true);
+      $('.psLineDiv').css('display', 'inline');
+      flowlineVector.setVisible(true);
+      $('.hmapDiv2').show();
+    } else {
+      $('#psHmapChk2').prop('checked', false);
+      $('.psLineDiv').css('display', 'none');
+      flowlineVector.setVisible(false);
+      $('.hmapDiv2').hide();
+    }
+  });
+
   $('#psHmapChk2').on('click', function () {
-    if (!$('#psHmapChk2').is(':checked')) {
+    if (flowlineVector.getVisible()) {
+      flowlineVector.setVisible(false);
       $('.hmapDiv2').hide();
     } else {
+      flowlineVector.setVisible(true);
       $('.hmapDiv2').show();
     }
   });
@@ -130,6 +149,40 @@
     var geojson = new ol.format.GeoJSON().writeFeatures(roadPOISource.getFeatures());
     // console.log(geojson);
     var filename = 'poi.geojson';
+
+    var createUrl = '/download/create';
+    var downloadUrl = '/download';
+
+    $.ajax({
+      type: "POST",
+      url: createUrl,
+      data: {
+        filename: filename,
+        source: geojson
+      },
+      dataType: "json",
+      beforeSend: function () {
+        $('#div_load_image').show();
+      },
+      success: function (data) {
+        $('#div_load_image').hide();
+
+        location.href = downloadUrl + '/' + filename;
+      },
+      error: function () {
+        alert('에러가 발생했습니다.');
+      }
+    });
+  });
+
+  $('#save2').on('click', function (e) {
+    alert('준비 중입니다.');
+  });
+
+  $('#down2').on('click', function (e) {
+    var geojson = new ol.format.GeoJSON().writeFeatures(flowlineSource.getFeatures());
+    // console.log(geojson);
+    var filename = 'line.geojson';
 
     var createUrl = '/download/create';
     var downloadUrl = '/download';
