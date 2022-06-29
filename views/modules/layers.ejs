@@ -107,16 +107,28 @@
     visible: false,
     source: roadPOISource,
     style: function(feature) {
-      labelStyle.getText().setText((feature.getProperties().panoid.substring(8) / 100).toString());
+      labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score,parseFloat(hmap_blur.value, 10)));
       return labelStyle;
     },    
-    maxResolution: 25,
+    //maxResolution: 25,
     zIndex: 1000
   });
 
-  roadPOISource.once('change', function (e) {
+  // Create layer
+  var flowlineSource2 = new ol.source.Vector({
+    url: '/data/flowline2.geojson',    
+    projection: 'EPSG:3857',
+    format: new ol.format.GeoJSON()
+  });  
+
+  roadPOISource.on('featuresloadstart', function (e) {            
+    $('#div_load_image').show();       
+  });
+
+  roadPOISource.on('featuresloadend', function (e) {    
+    $('#div_load_image').hide();
     if (roadPOISource.getState() === 'ready') {
-            
+      // TO-DO     
     }
   });
 
@@ -127,14 +139,14 @@
   });
   var flowlineVector = new ol.layer.VectorImage({
     title: '도로 점수',
-    visible: true,
-    source: flowlineSource,
+    visible: false,
+    source: flowlineSource2,
     style: styleFn
   });
   //map.addLayer(flowlineVector);
 
-  flowlineSource.once('change', function (e) {
-    if (flowlineSource.getState() === 'ready') {
+  flowlineSource2.once('change', function (e) {
+    if (flowlineSource2.getState() === 'ready') {
       /**
       * author : khyoo1221
       * description : 
@@ -143,10 +155,10 @@
       * @param {px}
       * 
       */
-      setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);
+      setCoords_Z(flowlineSource2.getFeatures()[0], 'params', flowlineSource2.getFeatures()[0].getProperties().weights[0].w1);
       
       // Set Min/Max from feature
-      getMinMax(flowlineSource.getFeatures()[0]);
+      getMinMax(flowlineSource2.getFeatures()[0]);
     }
   });
 

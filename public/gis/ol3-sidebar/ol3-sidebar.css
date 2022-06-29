@@ -14,13 +14,13 @@
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
-      width: 250px; } }
+      width: 260px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
-      width: 250px; } }
+      width: 260px; } }
   @media (min-width: 1200px) {
     .sidebar {
-      width: 250px; } }
+      width: 260px; } }
 
 .sidebar-left {
   left: 0; }

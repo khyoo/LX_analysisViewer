@@ -18,14 +18,13 @@
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
       <ul role="tablist">
-        <li class="active"><a href="#tracks" role="tab"><i class="fa fa-map"></i></a></li>
-        <li><a href="#trackTimes" role="tab"><i class="fa fa-quora"></i></a></li>
-        <li><a href="#info" role="tab"><i class="fa fa-plus"></i></a></li>
-        <li><a href="https://github.com/khyoo/LX_analysisViewer" role="tab" target="_blank"><i
-              class="fa fa-github"></i></a></li>
+        <li class="active"><a href="#tracks" role="tab"><i class="fas fa-map"></i></a></li>
+        <li><a href="#trackTimes" role="tab"><i class="fab fa-quora"></i></a></li>
+        <li><a href="#info" role="tab"><i class="fas fa-plus"></i></a></li>
+        <li><a href="https://github.com/khyoo/LX_analysisViewer" role="tab" target="_blank"><i class="fab fa-github"></i></a></li>
       </ul>
       <ul role="tablist">
-        <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        <li><a href="#settings" role="tab"><i class="fas fa-user-cog"></i></a></li>
       </ul>
     </div>
   
@@ -34,7 +33,7 @@
       <div class="sidebar-pane active" id="tracks">
         <h2 class="sidebar-header">
           Layers
-          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
         <div id="layers" class="layer-switcher"></div>
         
@@ -51,21 +50,25 @@
         <div class="grpLayer-anal">
           <input type="checkbox" id="psLayerChk" /> 보행점수 레이어1
           <div class="grpLayer-sub-anal">
-            <input type="checkbox" id="psPointChk" /> Point 레이어            
+            <input type="checkbox" id="psPointChk" /> Point 레이어 
+            <div class="psPointDiv">
+              <span class="layer-edit"><a href="#" id="save1" title="저장"><i class="fas fa-edit"></i></a></span>            
+              <span class="layer-download"><a href="#" id="down1" title="다운로드"><i class="fas fa-download"></i></a></span>            
+            </div>
+            <div class="grpLayer-sub-anal">
+              <input type="checkbox" id="psHmapScoreChk" /> 보행점수
+            </div>
           </div>
           <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psHmapChk" /> HeatMap 레이어            
-            <div class="rangebar hmapDiv1">
-              <div class="grpLayer-sub-anal">
-                <input type="checkbox" id="psHmapScoreChk" /> HeatMap 점수
-              </div>
+            <div class="rangebar hmapDiv1">              
               <label>HeatMap radius size</label>
               <br/>            
               <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
               <br/>
               <label>HeatMap blur size</label>
               <br/>
-              <input id="hmap_blur" type="range" min="1" max="50" step="1" value="15"/>
+              <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
             </div>
           </div>
         </div>
@@ -162,7 +165,7 @@
       <div class="sidebar-pane" id="trackTimes">
         <h2 class="sidebar-header">
           Deep Zones Insert
-          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
         <div id="trackQuery">
           
@@ -172,7 +175,7 @@
       <div class="sidebar-pane" id="info">
         <h2 class="sidebar-header">
           Track Insert
-          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
         <div id="trackInsert">
           
@@ -180,7 +183,7 @@
       </div>
   
       <div class="sidebar-pane" id="settings">
-        <h2 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        <h2 class="sidebar-header">Settings<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
       </div>
     </div>
@@ -193,7 +196,7 @@
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
       <ul role="tablist">
-        <li id="tablist-right"><a href="#imageTab" role="tab"><i class="fa fa-car"></i></a></li>        
+        <li id="tablist-right"><a href="#imageTab" role="tab"><i class="fas fa-images"></i></a></li>        
       </ul>
     </div>
   
@@ -202,7 +205,7 @@
       <div class="sidebar-pane" id="imageTab">
         <h2 class="sidebar-header">
           로드뷰 이미지
-          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>                
         <div id="images">          
         </div>
@@ -215,8 +218,8 @@
   <div id="map" class="sidebar-map"></div>
 
   <% include ./modules/flowLine %>
-  <% include ./modules/layers %>
   <% include ./modules/heatmap %>
+  <% include ./modules/layers %>  
    
   <script type="text/javascript">
 

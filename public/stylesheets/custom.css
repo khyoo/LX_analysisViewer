@@ -129,6 +129,20 @@ html, body {
   line-height: 1.5em;
 }
 
+.psPointDiv {
+  display: none;
+}
+
+.layer-download {
+  position: absolute;
+  right: 10px;
+}
+
+.layer-edit {
+  position: absolute;
+  right: 30px;
+}
+
 .rangebar {
   margin-top: 5px;
 }
