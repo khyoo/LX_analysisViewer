@@ -6,13 +6,20 @@ var path = require('path');
 var mime = require('mime');
 var iconvLite = require('iconv-lite');
 
+var beautify = require("json-beautify");
+
 var folder = './public/';
 
 router.post('/create', function(req, res, next) {	
   var file = folder + req.body.filename; 
 
+  var geojson = req.body.source;
+  geojson = beautify(geojson, null, 2, 100);
+
+  // console.log(geojson);
+
 	// 파일 생성
-	fs.writeFileSync(file, req.body.source);
+	fs.writeFileSync(file, geojson);
 	
 	res.send({result:'ok'});
 });

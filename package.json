@@ -12,6 +12,7 @@
     "express": "~4.16.1",
     "fs": "^0.0.1-security",
     "http-errors": "~1.6.3",
+    "json-beautify": "^1.1.1",
     "mime": "^3.0.0",
     "morgan": "~1.9.1",
     "path": "^0.12.7"
