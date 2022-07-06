@@ -45,6 +45,7 @@
   });
 
   map.addLayer(roadPOIVector);
+  map.addLayer(roadPOIVector_matcher);
   map.addLayer(hmapVector);
 
   $('#psLayerChk').on('click', function () {
@@ -87,6 +88,18 @@
     }
   });
 
+  $('#psPointMatcherChk').on('click', function () {
+    if (roadPOIVector_matcher.getVisible()) {
+      roadPOIVector_matcher.setVisible(false);
+
+      $('.psPointDiv2').css('display', 'none');
+    } else {
+      roadPOIVector_matcher.setVisible(true);
+
+      $('.psPointDiv2').css('display', 'inline');
+    }
+  });
+
   $('#psHmapChk').on('click', function () {
     if (hmapVector.getVisible()) {
       hmapVector.setVisible(false);
@@ -115,11 +128,13 @@
       $('.psLineDiv').css('display', 'inline');
       flowlineVector.setVisible(true);
       $('.hmapDiv2').show();
+      $('.psItems').show();
     } else {
       $('#psHmapChk2').prop('checked', false);
       $('.psLineDiv').css('display', 'none');
       flowlineVector.setVisible(false);
       $('.hmapDiv2').hide();
+      $('.psItems').hide();
     }
   });
 
@@ -140,6 +155,72 @@
       $('.hmapDiv3').show();
     }
   });
+
+
+  $('#psObst_levelChk').on('click', function () {
+    if (!$('#psObst_levelChk').is(':checked')) {
+      $('.hmapSubDiv1').hide();
+    } else {
+      $('.hmapSubDiv1').show();
+    }
+  });
+
+  $('#psSf_levelChk').on('click', function () {
+    if (!$('#psSf_levelChk').is(':checked')) {
+      $('.hmapSubDiv2').hide();
+    } else {
+      $('.hmapSubDiv2').show();
+    }
+  });
+
+  $('#psSr_levelChk').on('click', function () {
+    if (!$('#psSr_levelChk').is(':checked')) {
+      $('.hmapSubDiv3').hide();
+    } else {
+      $('.hmapSubDiv3').show();
+    }
+  });
+
+  $('#psSlop_levelChk').on('click', function () {
+    if (!$('#psSlop_levelChk').is(':checked')) {
+      $('.hmapSubDiv4').hide();
+    } else {
+      $('.hmapSubDiv4').show();
+    }
+  });
+
+  $('#psSky_levelChk').on('click', function () {
+    if (!$('#psSky_levelChk').is(':checked')) {
+      $('.hmapSubDiv5').hide();
+    } else {
+      $('.hmapSubDiv5').show();
+    }
+  });
+
+  $('#psTree_levelChk').on('click', function () {
+    if (!$('#psTree_levelChk').is(':checked')) {
+      $('.hmapSubDiv6').hide();
+    } else {
+      $('.hmapSubDiv6').show();
+    }
+  });
+
+  $('#psPoi_levelChk').on('click', function () {
+    if (!$('#psPoi_levelChk').is(':checked')) {
+      $('.hmapSubDiv7').hide();
+    } else {
+      $('.hmapSubDiv7').show();
+    }
+  });
+
+  $('#psBus_levelChk').on('click', function () {
+    if (!$('#psBus_levelChk').is(':checked')) {
+      $('.hmapSubDiv8').hide();
+    } else {
+      $('.hmapSubDiv8').show();
+    }
+  });
+
 
   $('#save1').on('click', function (e) {
     alert('준비 중입니다.');
