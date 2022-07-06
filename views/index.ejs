@@ -82,7 +82,7 @@
         </div>
 
         <div class="grpLayer-anal">
-          <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어(라인)          
+          <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어(기본)          
           <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psHmapChk2" /> 도로 네트워크
             <div class="psLineDiv">
@@ -95,75 +95,67 @@
                 <input type="checkbox" id="psHmapScoreChk2" /> 도로 네트워크 점수
               </div>
               -->
-              <label>도로 히트맵 Control</label>
+              <label>도로 지표 Control</label>
               <br/>            
               <input id="flowline_radius" type="range" min="1" max="50" step="1" value="15"/>            
               <br/>              
             </div>
             <div class="grpLayer-sub-anal psItems">
-              <div>
-                <input type="checkbox" id="psObst_levelChk" /> 보행로 혼잡도            
+              <div>                
                 <div class="rangebar hmapSubDiv1">
                   <label>보행로 혼잡도 Control</label>
                   <div>
-                    <input id="psObst_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                    <input id="psObst_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                   </div>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psSf_levelChk" /> 보도 펜스
                 <div class="rangebar hmapSubDiv2">
                   <label>보도 펜스 Control</label>
                   <br/>
-                  <input id="psSf_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                  <input id="psSf_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psSr_levelChk" /> 보도 비율
                 <div class="rangebar hmapSubDiv3">
                   <label>보도 비율 Control</label>
                   <br/>
-                  <input id="psSr_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                  <input id="psSr_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psSlop_levelChk" /> 경사도
                 <div class="rangebar hmapSubDiv4">
                   <label>경사도 Control</label>
                   <br/>
-                  <input id="psSlop_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                  <input id="psSlop_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psSky_levelChk" /> 녹색 지수
                 <div class="rangebar hmapSubDiv5">
                   <label>녹색 지수 Control</label>
                   <br/>
-                  <input id="psSky_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                  <input id="psSky_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psTree_levelChk" /> 하늘개방감 지수
                 <div class="rangebar hmapSubDiv6">
                   <label>하늘개방감 지수 Control</label>
                   <br/>
-                  <input id="psTree_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>            
+                  <input id="psTree_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>        
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psPoi_levelChk" /> 주요 시설 접근성
                 <div class="rangebar hmapSubDiv7">
                   <label>주요 시설 접근성 Control</label>
                   <br/>
-                  <input id="psPoi_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>
+                  <input id="psPoi_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
               <div>
-                <input type="checkbox" id="psBus_levelChk" /> 버스 정류장 거리
                 <div class="rangebar hmapSubDiv8">
                   <label>버스 정류장 거리 Control</label>
                   <br/>
-                  <input id="psBus_level_radius" style="width:100px;" type="range" min="1" max="50" step="1" value="15"/>    
+                  <input id="psBus_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                 </div>
               </div>
             </div>
@@ -304,15 +296,6 @@
     //$('#div_load_image').hide();
     $('.hmapDiv1').hide();
     $('.hmapDiv2').hide();
-
-    $('.hmapSubDiv1').hide();
-    $('.hmapSubDiv2').hide();
-    $('.hmapSubDiv3').hide();
-    $('.hmapSubDiv4').hide();
-    $('.hmapSubDiv5').hide();
-    $('.hmapSubDiv6').hide();
-    $('.hmapSubDiv7').hide();
-    $('.hmapSubDiv8').hide();
 
     var view = new ol.View({
       projection: 'EPSG:3857',      
