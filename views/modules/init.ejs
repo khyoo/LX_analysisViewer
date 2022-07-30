@@ -72,21 +72,7 @@
     }
   });
 
-  $('#psPointChk').on('click', function () {
-    if (roadPOIVector.getVisible()) {
-      roadPOIVector.setVisible(false);
-      roadPOILabelVector.setVisible(false);
-
-      $('#psHmapScoreChk').prop('checked', false);
-      $('.psPointDiv').css('display', 'none');
-    } else {
-      roadPOIVector.setVisible(true);
-      roadPOILabelVector.setVisible(true);
-
-      $('#psHmapScoreChk').prop('checked', true);
-      $('.psPointDiv').css('display', 'inline');
-    }
-  });
+  
 
   $('#psPointMatcherChk').on('click', function () {
     if (roadPOIVector_matcher.getVisible()) {
@@ -100,24 +86,10 @@
     }
   });
 
-  $('#psHmapChk').on('click', function () {
-    if (hmapVector.getVisible()) {
-      hmapVector.setVisible(false);
-      $('.hmapDiv1').hide();
-    } else {
-      hmapVector.setVisible(true);
-      $('.hmapDiv1').show();
-    }
-  });
+  
 
   map.addLayer(roadPOILabelVector);
-  $('#psHmapScoreChk').on('click', function () {
-    if (roadPOILabelVector.getVisible()) {
-      roadPOILabelVector.setVisible(false);
-    } else {
-      roadPOILabelVector.setVisible(true);
-    }
-  });
+  
 
 
   map.addLayer(flowlineVector);
@@ -138,15 +110,7 @@
     }
   });
 
-  $('#psHmapChk2').on('click', function () {
-    if (flowlineVector.getVisible()) {
-      flowlineVector.setVisible(false);
-      $('.hmapDiv2').hide();
-    } else {
-      flowlineVector.setVisible(true);
-      $('.hmapDiv2').show();
-    }
-  });
+  
 
   $('#psHmapChk3').on('click', function () {
     if (!$('#psHmapChk3').is(':checked')) {
@@ -157,69 +121,85 @@
   });
 
 
-  $('#psObst_levelChk').on('click', function () {
-    if (!$('#psObst_levelChk').is(':checked')) {
-      $('.hmapSubDiv1').hide();
+
+
+
+
+  $('#qtPointChk').on('click', function () {
+    if (roadPOIVector.getVisible()) {
+      roadPOIVector.setVisible(false);
+      roadPOILabelVector.setVisible(false);      
+
+      $('#qtPointScoreChk').prop('checked', false);
+      $('.qtPointDiv').css('display', 'none');
+      
+      $('#qtPointHmapChk').prop('checked', false);
+      hmapVector.setVisible(false);
+      $('.qtPointhmapDiv').hide();      
     } else {
-      $('.hmapSubDiv1').show();
+      roadPOIVector.setVisible(true);
+      roadPOILabelVector.setVisible(true);
+      
+      $('#qtPointScoreChk').prop('checked', true);
+      $('.qtPointDiv').css('display', 'inline');
+
+      $('#qtPointHmapChk').prop('checked', true);
+      hmapVector.setVisible(true);
+      $('.qtPointhmapDiv').show();
     }
   });
 
-  $('#psSf_levelChk').on('click', function () {
-    if (!$('#psSf_levelChk').is(':checked')) {
-      $('.hmapSubDiv2').hide();
+  $('#qtPointScoreChk').on('click', function () {
+    if (roadPOILabelVector.getVisible()) {
+      roadPOILabelVector.setVisible(false);
     } else {
-      $('.hmapSubDiv2').show();
+      roadPOILabelVector.setVisible(true);
     }
   });
 
-  $('#psSr_levelChk').on('click', function () {
-    if (!$('#psSr_levelChk').is(':checked')) {
-      $('.hmapSubDiv3').hide();
+  $('#qtPointHmapChk').on('click', function () {
+    if (hmapVector.getVisible()) {
+      hmapVector.setVisible(false);
+      $('.qtPointhmapDiv').hide();
     } else {
-      $('.hmapSubDiv3').show();
+      hmapVector.setVisible(true);
+      $('.qtPointhmapDiv').show();
     }
   });
 
-  $('#psSlop_levelChk').on('click', function () {
-    if (!$('#psSlop_levelChk').is(':checked')) {
-      $('.hmapSubDiv4').hide();
+  $('#qtRoadScoreChk').on('click', function () {
+    if (flowlineVector.getVisible()) {
+      flowlineVector.setVisible(false);      
     } else {
-      $('.hmapSubDiv4').show();
+      flowlineVector.setVisible(true);      
     }
   });
 
-  $('#psSky_levelChk').on('click', function () {
-    if (!$('#psSky_levelChk').is(':checked')) {
-      $('.hmapSubDiv5').hide();
+  $('#qtCustomChk').on('click', function () {
+    if (!$('#qtCustomChk').is(':checked')) {
+      $('.psItems').hide();
     } else {
-      $('.hmapSubDiv5').show();
+      $('.psItems').show();
     }
   });
 
-  $('#psTree_levelChk').on('click', function () {
-    if (!$('#psTree_levelChk').is(':checked')) {
-      $('.hmapSubDiv6').hide();
-    } else {
-      $('.hmapSubDiv6').show();
-    }
-  });
 
-  $('#psPoi_levelChk').on('click', function () {
-    if (!$('#psPoi_levelChk').is(':checked')) {
-      $('.hmapSubDiv7').hide();
-    } else {
-      $('.hmapSubDiv7').show();
-    }
-  });
 
-  $('#psBus_levelChk').on('click', function () {
-    if (!$('#psBus_levelChk').is(':checked')) {
-      $('.hmapSubDiv8').hide();
-    } else {
-      $('.hmapSubDiv8').show();
-    }
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   $('#save1').on('click', function (e) {

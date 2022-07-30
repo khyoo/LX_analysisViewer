@@ -118,18 +118,18 @@ html, body {
   font-weight: bold;
 }
 
-.grpLayer-anal {
+.grpLayer-body {
   margin-left: 20px;
   line-height: 1.5em;
   margin-bottom: 5px;
 }
 
-.grpLayer-sub-anal {
+.grpLayer-body-sub {
   margin-left: 15px;
   line-height: 1.5em;
 }
 
-.psPointDiv,.psPointDiv2,.psLineDiv,.psItems {
+.qtPointDiv,.qlPointDiv,.qtPointhmapDiv,.qlPointhmapDiv,.psLineDiv,.psItems {
   display: none;
 }
 

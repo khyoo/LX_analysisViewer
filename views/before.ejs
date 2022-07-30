@@ -40,138 +40,67 @@
         <div class="grpLayer-title">
           ▶ 기본 레이어
         </div>
-        <div class="grpLayer-body">
+        <div class="grpLayer-anal">
           <input type="checkbox" id="allRoadPoiChk" /> 전체 도로 Point          
         </div>
 
         <div class="grpLayer-title">
           ▶ 분석 레이어
         </div>
-        <div class="grpLayer-body">
-          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어
-          <div class="grpLayer-body-sub">
+        <div class="grpLayer-anal">
+          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어(포인트)
+          <div class="grpLayer-sub-anal">
             <div>
-              <input type="checkbox" id="psPointChk11" /> 정량점수 레이어               
-            </div>                        
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qtPointChk" /> 포인트 레이어
-              <div class="qtPointDiv">
+              <input type="checkbox" id="psPointChk" /> 정량점수 레이어 
+              <div class="psPointDiv">
                 <span class="layer-edit"><a href="#" id="save1" title="저장"><i class="fas fa-edit"></i></a></span>            
                 <span class="layer-download"><a href="#" id="down1" title="다운로드"><i class="fas fa-download"></i></a></span>            
               </div>
-              <div class="grpLayer-body-sub">
-                <input type="checkbox" id="qtPointScoreChk" /> 보행점수
-              </div>
-              <div class="grpLayer-body-sub">
-                <input type="checkbox" id="qtPointHmapChk" /> 히트맵
-                <div class="rangebar qtPointhmapDiv">
-                  <label>HeatMap blur size</label>
-                  <br/>
-                  <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
-                </div>
+            </div>
+            <!--
+            <div>
+              <input type="checkbox" id="psPointMatcherChk" /> Point 보정 레이어 
+              <div class="psPointDiv2">
+                <span class="layer-edit"><a href="#" id="save3" title="저장"><i class="fas fa-edit"></i></a></span>            
+                <span class="layer-download"><a href="#" id="down3" title="다운로드"><i class="fas fa-download"></i></a></span>            
               </div>
             </div>
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qtRoadScoreChk" /> 도로라인 레이어
+            -->
+            <div class="grpLayer-sub-anal">
+              <input type="checkbox" id="psHmapScoreChk" /> 보행점수
             </div>
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qtCustomChk" /> 커스텀 Control
-              <div class="grpLayer-body-sub psItems">
-                <div>                
-                  <div class="rangebar hmapSubDiv1">
-                    <label>보행로 혼잡도 Control</label>
-                    <div>
-                      <input id="psObst_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv2">
-                    <label>보도 펜스 Control</label>
-                    <br/>
-                    <input id="psSf_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv3">
-                    <label>보도 비율 Control</label>
-                    <br/>
-                    <input id="psSr_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv4">
-                    <label>경사도 Control</label>
-                    <br/>
-                    <input id="psSlop_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv5">
-                    <label>녹색 지수 Control</label>
-                    <br/>
-                    <input id="psSky_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv6">
-                    <label>하늘개방감 지수 Control</label>
-                    <br/>
-                    <input id="psTree_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>        
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv7">
-                    <label>주요 시설 접근성 Control</label>
-                    <br/>
-                    <input id="psPoi_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
-                <div>
-                  <div class="rangebar hmapSubDiv8">
-                    <label>버스 정류장 거리 Control</label>
-                    <br/>
-                    <input id="psBus_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
-                  </div>
-                </div>
+            <!--
+            <div>
+              <input type="checkbox" id="psPointChk2" /> 정성점수 레이어 
+              <div class="psPointDiv2">
+                <span class="layer-edit"><a href="#" id="save1" title="저장"><i class="fas fa-edit"></i></a></span>            
+                <span class="layer-download"><a href="#" id="down1" title="다운로드"><i class="fas fa-download"></i></a></span>            
               </div>
             </div>
+            <div class="grpLayer-sub-anal">
+              <input type="checkbox" id="psHmapScoreChk" /> 보행점수
+            </div>
+            -->
           </div>
-          <div class="grpLayer-body-sub">
-            <div>
-              <input type="checkbox" id="psPointChk" /> 정성점수 레이어               
-            </div>            
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qlPointChk" /> 포인트 레이어
-              <div class="qlPointDiv">
-                <span class="layer-edit"><a href="#" id="save1" title="저장"><i class="fas fa-edit"></i></a></span>            
-                <span class="layer-download"><a href="#" id="down1" title="다운로드"><i class="fas fa-download"></i></a></span>            
-              </div>
-              <div class="grpLayer-body-sub">
-                <input type="checkbox" id="qlPointScoreChk" /> 보행점수
-              </div>
-              <div class="grpLayer-body-sub">
-                <input type="checkbox" id="qlPointHmapChk" /> 히트맵
-                <div class="rangebar qlPointhmapDiv">                            
-                  <label>HeatMap blur size</label>
-                  <br/>
-                  <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
-                </div>
-              </div>
-            </div>
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qlRoadScoreChk" /> 도로라인 레이어
-            </div>
-            <div class="grpLayer-body-sub">
-              <input type="checkbox" id="qlCustomChk" /> 커스텀 Control
+          <div class="grpLayer-sub-anal">
+            <input type="checkbox" id="psHmapChk" /> HeatMap 레이어            
+            <div class="rangebar hmapDiv1">              
+              <!--
+              <label>HeatMap radius size</label>
+              <br/>            
+              <input id="hmap_radius" type="range" min="1" max="50" step="1" value="15"/>            
+              <br/>
+              -->
+              <label>HeatMap blur size</label>
+              <br/>
+              <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
             </div>
           </div>
         </div>
 
-        <!--
-        <div class="grpLayer-body">
+        <div class="grpLayer-anal">
           <input type="checkbox" id="psLayerChk2" /> 보행점수 레이어(기본)          
-          <div class="grpLayer-body-sub">
+          <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psHmapChk2" /> 도로 네트워크
             <div class="psLineDiv">
               <span class="layer-edit"><a href="#" id="save2" title="저장"><i class="fas fa-edit"></i></a></span>            
@@ -179,29 +108,86 @@
             </div>
             <div class="rangebar hmapDiv2">
               <!--
-              <div class="grpLayer-body-sub">
+              <div class="grpLayer-sub-anal">
                 <input type="checkbox" id="psHmapScoreChk2" /> 도로 네트워크 점수
               </div>
-              
+              -->
               <label>도로 지표 Control</label>
               <br/>            
               <input id="flowline_radius" type="range" min="1" max="50" step="1" value="15"/>            
               <br/>              
             </div>
-            
+            <div class="grpLayer-sub-anal psItems">
+              <div>                
+                <div class="rangebar hmapSubDiv1">
+                  <label>보행로 혼잡도 Control</label>
+                  <div>
+                    <input id="psObst_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv2">
+                  <label>보도 펜스 Control</label>
+                  <br/>
+                  <input id="psSf_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv3">
+                  <label>보도 비율 Control</label>
+                  <br/>
+                  <input id="psSr_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv4">
+                  <label>경사도 Control</label>
+                  <br/>
+                  <input id="psSlop_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv5">
+                  <label>녹색 지수 Control</label>
+                  <br/>
+                  <input id="psSky_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv6">
+                  <label>하늘개방감 지수 Control</label>
+                  <br/>
+                  <input id="psTree_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>        
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv7">
+                  <label>주요 시설 접근성 Control</label>
+                  <br/>
+                  <input id="psPoi_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+              <div>
+                <div class="rangebar hmapSubDiv8">
+                  <label>버스 정류장 거리 Control</label>
+                  <br/>
+                  <input id="psBus_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      -->
 <!--
-        <div class="grpLayer-body">
+        <div class="grpLayer-anal">
           <input type="checkbox" id="psLayerChk3" /> 보행점수 레이어3
-          <div class="grpLayer-body-sub">
+          <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psPointChk3" /> Point 레이어            
           </div>
-          <div class="grpLayer-body-sub">
+          <div class="grpLayer-sub-anal">
             <input type="checkbox" id="psHmapChk3" /> HeatMap 레이어            
             <div class="rangebar hmapDiv3">
-              <div class="grpLayer-body-sub">
+              <div class="grpLayer-sub-anal">
                 <input type="checkbox" id="psHmapScoreChk3" /> HeatMap 점수
               </div>
               <label>HeatMap radius size</label>
@@ -218,7 +204,7 @@
 
 
         <!--
-        <div class="grpLayer-body">
+        <div class="grpLayer-anal">
           <input type="checkbox" id="chkTest2" /> 레이어 테스트2
           <div class="hmapDiv2">
             <label>HeatMap radius size</label>
@@ -230,7 +216,7 @@
             <input id="hmap_blur2" type="range" min="1" max="50" step="1" value="15"/>
           </div>
         </div>
-        <div class="grpLayer-body">
+        <div class="grpLayer-anal">
           <input type="checkbox" id="chkTest3" /> 레이어 테스트3
           <div class="hmapDiv3">
             <label>HeatMap radius size</label>
@@ -325,8 +311,8 @@
   <script type="text/javascript">
 
     //$('#div_load_image').hide();
-    //$('.hmapDiv1').hide();
-    //$('.hmapDiv2').hide();
+    $('.hmapDiv1').hide();
+    $('.hmapDiv2').hide();
 
     var view = new ol.View({
       projection: 'EPSG:3857',      

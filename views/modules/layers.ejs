@@ -163,7 +163,7 @@
   var flowlineSource = new ol.source.Vector({
     // url: '/data/flowline.geojson',
     url: '/data/jeonju_road_line_origin.geojson',
-    // url: '/data/jeonju_road_line_origin.geojson',
+    // url: '/data/qt_score.geojson',
     format: new ol.format.GeoJSON()
   });
   var flowlineVector = new ol.layer.VectorImage({
@@ -196,7 +196,7 @@
       * 
       */
 
-      // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);
+      // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
       setCoords_Z2(flowlineSource.getFeatures(), 200);
 
       // Set Min/Max from feature
