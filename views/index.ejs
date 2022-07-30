@@ -51,7 +51,7 @@
           <input type="checkbox" id="psLayerChk" /> 보행점수 레이어
           <div class="grpLayer-body-sub">
             <div>
-              <input type="checkbox" id="psPointChk11" /> 정량점수 레이어               
+              <input type="checkbox" id="qtLayerChk" /> 정량점수 레이어               
             </div>                        
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qtPointChk" /> 포인트 레이어
@@ -73,6 +73,10 @@
             </div>
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qtRoadScoreChk" /> 도로라인 레이어
+              <div class="qtRoadScoreDiv">
+                <span class="layer-edit"><a href="#" id="save2" title="저장"><i class="fas fa-edit"></i></a></span>            
+                <span class="layer-download"><a href="#" id="down2" title="다운로드"><i class="fas fa-download"></i></a></span>            
+              </div>
             </div>
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qtCustomChk" /> 커스텀 Control
@@ -161,6 +165,10 @@
             </div>
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qlRoadScoreChk" /> 도로라인 레이어
+              <div class="qlRoadScoreDiv">
+                <span class="layer-edit"><a href="#" id="save2" title="저장"><i class="fas fa-edit"></i></a></span>            
+                <span class="layer-download"><a href="#" id="down2" title="다운로드"><i class="fas fa-download"></i></a></span>            
+              </div>
             </div>
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qlCustomChk" /> 커스텀 Control
@@ -268,8 +276,25 @@
           Deep Zones Insert
           <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
-        <div id="trackQuery">
+        <div id="trackQuery" style="margin-top:30px;">
+          <div>
+            <label>모드선택</label>
+            <select name="analysisMode">
+              <option value="1">내츄럴브레이크</option>
+              <option value="2">등간격</option>
+            </select>
+          </div>
+          <div>
+            <label for="spinner">분류:</label>
+            <INPUT TYPE="NUMBER" id="classCnt" MIN="1" MAX="10" STEP="1" VALUE="1" style="width: 50px;">
+
+            <input type="button" id="btnCreate" value="생성">
+          </div>
           
+          
+          <div class="area-result">
+          생성 전....
+          </div>
         </div>
       </div>
   
@@ -324,9 +349,24 @@
    
   <script type="text/javascript">
 
-    //$('#div_load_image').hide();
-    //$('.hmapDiv1').hide();
-    //$('.hmapDiv2').hide();
+    
+
+    $('#btnCreate').on('click', function(){
+      let len = $('#classCnt').val();
+
+      let html = '';
+      html += '<ul>';
+
+      for(let i=0; i<len; i++) {
+        html += '<li style="list-style-type :none;">';
+        html += '<input type="checkbox" name="chkClass">';
+        html += '테스트 ' + (i+1);
+        html += '</li>';
+      }
+      html += '</ul>';
+
+      $('.area-result').html(html);
+    });
 
     var view = new ol.View({
       projection: 'EPSG:3857',      
@@ -362,24 +402,7 @@
         type: 'base',
         visible: false,
         source: new ol.source.OSM()
-      }),
-      /*
-      new ol.layer.Group({
-        // A layer must have a title to appear in the layerswitcher
-        title: 'Spatial 객체',
-        // Adding a 'fold' property set to either 'open' or 'close' makes the group layer
-        // collapsible
-        fold: 'open',
-        layers: [
-          buildingVector,          
-          roadAllPOIVector,
-          roadPOIVector,
-          roadPOILabelVector,
-          flowlineVector,
-          hmap_vector
-        ]
-      })
-      */
+      })      
     ];
 
     //var map = new ol.PerspectiveMap({          
@@ -424,6 +447,7 @@
   <% include ./modules/init %>
   
   <% include ./modules/interaction %>  
+  <% include ./modules/popup %>
   <% include ./modules/misc %>
 
 </body>

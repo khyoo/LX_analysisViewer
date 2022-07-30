@@ -1,0 +1,2 @@
+ql_score.geojson filter=lfs diff=lfs merge=lfs -text
+qt_score.geojson filter=lfs diff=lfs merge=lfs -text

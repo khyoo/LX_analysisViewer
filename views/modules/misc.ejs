@@ -1,23 +1,5 @@
 <script type="text/javascript">
 
-  // Popup overlay
-  var popup = new ol.control.Overlay({ hideOnClick: true, className: 'slide-right' });
-  map.addControl(popup);
-
-  // Set wipe parameters before/after vivibility change
-  popup.on("change:visible", function (e) {
-    // wipe needs to know the size of the element to clip on
-    if (/wipe/.test('slide-right')) {
-      if (e.visible) {
-        $(e.element).css("clip", "rect(0px," + map.getSize()[0] + "px," + map.getSize()[1] + "px,0px)");
-      } else {
-        $(e.element).css("clip", "rect(0px,0px," + map.getSize()[1] + "px,0px)");
-      }
-    }
-    // Reset clip for others
-    else $(e.element).css("clip", "");
-  });
-
   // ProgressBar
   var progress = new ol.control.ProgressBar({
     // target: $('.options').get(0)

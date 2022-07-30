@@ -122,8 +122,55 @@
 
 
 
+  $('#qtLayerChk').on('click', function () {
+    if (!$('#qtLayerChk').is(':checked')) {
+      $('#qtPointChk').prop('checked', false);
+      roadPOIVector.setVisible(false);
+      roadPOILabelVector.setVisible(false);      
 
+      $('#qtPointScoreChk').prop('checked', false);
+      $('.qtPointDiv').css('display', 'none');
+      
+      $('#qtPointHmapChk').prop('checked', false);
+      hmapVector.setVisible(false);
+      $('.qtPointhmapDiv').hide();      
 
+      roadPOILabelVector.setVisible(false);
+
+      hmapVector.setVisible(false);
+      $('.qtPointhmapDiv').hide();
+
+      $('#qtRoadScoreChk').prop('checked', false);            
+      flowlineVector.setVisible(false);      
+      $('.qtRoadScoreDiv').css('display', 'none');
+
+      $('#qtCustomChk').prop('checked', false);  
+      $('.psItems').hide();
+    } else {
+      $('#qtPointChk').prop('checked', true);
+      roadPOIVector.setVisible(true);
+      roadPOILabelVector.setVisible(true);
+      
+      $('#qtPointScoreChk').prop('checked', true);
+      $('.qtPointDiv').css('display', 'inline');
+
+      $('#qtPointHmapChk').prop('checked', true);
+      hmapVector.setVisible(true);
+      $('.qtPointhmapDiv').show();
+
+      roadPOILabelVector.setVisible(true);
+
+      hmapVector.setVisible(true);
+      $('.qtPointhmapDiv').show();
+
+      $('#qtRoadScoreChk').prop('checked', true);
+      flowlineVector.setVisible(true);      
+      $('.qtRoadScoreDiv').css('display', 'inline');
+
+      $('#qtCustomChk').prop('checked', true);
+      $('.psItems').show();
+    }
+  });
 
   $('#qtPointChk').on('click', function () {
     if (roadPOIVector.getVisible()) {
@@ -170,8 +217,10 @@
   $('#qtRoadScoreChk').on('click', function () {
     if (flowlineVector.getVisible()) {
       flowlineVector.setVisible(false);      
+      $('.qtRoadScoreDiv').css('display', 'none');
     } else {
       flowlineVector.setVisible(true);      
+      $('.qtRoadScoreDiv').css('display', 'inline');
     }
   });
 
