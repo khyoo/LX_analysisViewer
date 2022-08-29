@@ -290,10 +290,9 @@
 
             <input type="button" id="btnCreate" value="생성">
           </div>
-          
-          
+                    
           <div class="area-result">
-          생성 전....
+          
           </div>
         </div>
       </div>
@@ -350,23 +349,6 @@
   <script type="text/javascript">
 
     
-
-    $('#btnCreate').on('click', function(){
-      let len = $('#classCnt').val();
-
-      let html = '';
-      html += '<ul>';
-
-      for(let i=0; i<len; i++) {
-        html += '<li style="list-style-type :none;">';
-        html += '<input type="checkbox" name="chkClass">';
-        html += '테스트 ' + (i+1);
-        html += '</li>';
-      }
-      html += '</ul>';
-
-      $('.area-result').html(html);
-    });
 
     var view = new ol.View({
       projection: 'EPSG:3857',      

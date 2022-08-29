@@ -318,4 +318,90 @@
       }
     });
   });
+
+  $('#btnCreate').on('click', function(){
+      let len = $('#classCnt').val();
+
+      $.getJSON('data/qt_score_temp.geojson',function(data) {
+   			var items = []; // will store values
+   			
+   			$.each(data.features, function(i,feature){
+          if (feature.properties.walk_index != null) {
+     				items.push(feature.properties.walk_index);
+          }
+   			});
+   		
+   			var dataJson = items;
+   			
+   			// Seventh serie
+   			serie7 = new geostats(dataJson);
+   			serie7.setPrecision(6);
+   			
+   			// we get Eq interval classification
+   			//var a = serie7.getClassQuantile(5);
+   			var a = serie7.getClassEqInterval(len);
+   			//var a = serie7.getClassJenks2(3);
+   			
+        let html = '<br>';
+        html += '<ul>';
+
+   			var ranges = serie7.ranges;
+   			for(i = 0; i < ranges.length ; i++) {   				
+          // console.log(ranges[i]);
+          
+          html += '<li style="list-style-type :none;">';
+          html += '<input type="checkbox" name="chkClass">&nbsp;&nbsp;';
+          html += ranges[i];
+          html += '</li>';
+   			}
+
+        html += '</ul>';
+
+        $('.area-result').html(html);
+
+        // flowline vetor layer
+        var flowlineSource2 = new ol.source.Vector({          
+          url: '/data/qt_score.geojson',
+          format: new ol.format.GeoJSON()
+        });
+        var flowlineVector2 = new ol.layer.VectorImage({
+          //title: '도로 점수',
+          visible: true,
+          source: flowlineSource2,
+          style: styleFn
+        });
+        map.addLayer(flowlineVector2);
+
+        flowlineSource2.on('featuresloadstart', function (e) {
+          $('#div_load_image').show();
+        });
+
+        flowlineSource2.on('featuresloadend', function (e) {
+          $('#div_load_image').hide();
+          if (flowlineSource2.getState() === 'ready') {
+            // TO-DO     
+          }
+        });
+
+        flowlineSource2.once('change', function (e) {
+          if (flowlineSource2.getState() === 'ready') {
+            /**
+            * author : khyoo1221
+            * description : 
+            * @param {feature}
+            * @param {paramNm}
+            * @param {px}
+            * 
+            */
+
+            // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
+            setCoords_Z2(flowlineSource2.getFeatures(), 200);
+
+            // Set Min/Max from feature
+            getMinMax(flowlineSource2.getFeatures());
+          }
+        });
+      });
+    });
+
 </script>
