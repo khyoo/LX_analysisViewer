@@ -16,14 +16,19 @@
   }
 
   // Z 코드 설정
-  function setCoords_Z(feature, paramNm, px) {
-    var c1 = feature.getGeometry().getCoordinates()[0];
-    var c2 = eval('feature.getProperties().' + paramNm);
+  function setCoords_Z(features, paramNm, px) {
+    features.forEach(function (feature) {
+      var c1 = feature.getGeometry().getCoordinates()[0];
+      var c2 = eval('feature.getProperties().' + paramNm);      
+      if (c2 == null || c2 == 'undefined') {
+        c2 = 0;
+      }
 
-    for (var i = 0; i < feature.getGeometry().getCoordinates()[0].length; i++) {
-      c1[i].push(c2[i][Object.keys(c2[i])[0]] * px);
-    }
-    feature.getGeometry().setCoordinates([c1]);
+      for (var i = 0; i < feature.getGeometry().getCoordinates()[0].length; i++) {
+        c1[i].push(c2 * px);
+      }
+      feature.getGeometry().setCoordinates([c1]);      
+    });
   }
 
   // Z 코드 설정-랜덤 데이터
@@ -59,7 +64,7 @@
         line.getCoordinateAtSeg(step * line.getLength(), seg);
         var h = (seg[0][2] + seg[0][2]) / 2;
         var dh = 255 * (h - min) / (max - min);
-        return getColor(dh, 3);
+        return getColor(dh, 3);        
       },
       width: 10,
       geometry: function (f) {

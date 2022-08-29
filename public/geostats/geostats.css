@@ -10,15 +10,18 @@
 
 .geostats-legend-block {
   border: 1px solid #555555;
-  display: block;
-  float: left;
+  display: inline-block;
   height: 12px;
-  margin: 0 5px 0 20px;
-  width: 20px;
+  margin: 0 5px 0 0px;
+  width: 30px;
 }
 
 .geostats-legend-counter { 
   font-size: 0.8em;
   color:#666;
   font-style: italic;
+}
+
+.geostats-mode {
+  height: 35px;
 }

@@ -273,22 +273,22 @@
   
       <div class="sidebar-pane" id="trackTimes">
         <h2 class="sidebar-header">
-          Deep Zones Insert
+          공간 분석 결과
           <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
         <div id="trackQuery" style="margin-top:30px;">
-          <div>
-            <label>모드선택</label>
-            <select name="analysisMode">
+          <div class="geostats-mode">
+            <label><strong>모드 : </strong></label>
+            <select name="analysisMode" id="analysisMode" style="width: 125px; height: 30px; border: 1px solid #c5c5c5;">
               <option value="1">내츄럴브레이크</option>
               <option value="2">등간격</option>
             </select>
           </div>
-          <div>
-            <label for="spinner">분류:</label>
-            <INPUT TYPE="NUMBER" id="classCnt" MIN="1" MAX="10" STEP="1" VALUE="1" style="width: 50px;">
-
-            <input type="button" id="btnCreate" value="생성">
+          <div class="geostats-mode">
+            <label for="spinner"><strong>분류 : </strong></label>
+            <input id="classCnt" name="value" style="width: 90px;">
+            
+            <div style="margin-left:10px; display:inline-block; vertical-align: middle;"><input type="button" id="btnCreate" value="생성"></div>
           </div>
                     
           <div class="area-result">
@@ -348,7 +348,12 @@
    
   <script type="text/javascript">
 
-    
+    var spinner = $( "#classCnt" ).spinner({
+      min: 1,
+      max: 5,
+      step: 1
+    });
+    spinner.spinner( "value", 1 );
 
     var view = new ol.View({
       projection: 'EPSG:3857',      

@@ -322,7 +322,8 @@
   $('#btnCreate').on('click', function(){
       let len = $('#classCnt').val();
 
-      $.getJSON('data/qt_score_temp.geojson',function(data) {
+      //$.getJSON('data/qt_score.geojson',function(data) {
+      $.getJSON('data/qt_score.geojson',function(data) {
    			var items = []; // will store values
    			
    			$.each(data.features, function(i,feature){
@@ -343,14 +344,15 @@
    			//var a = serie7.getClassJenks2(3);
    			
         let html = '<br>';
-        html += '<ul>';
-
+        html += '<ul style="padding-left:1rem;">';
+        let color_temp2 = ['1f78b4','33a02c','f4c804','f37b03','ff0000'];
    			var ranges = serie7.ranges;
    			for(i = 0; i < ranges.length ; i++) {   				
           // console.log(ranges[i]);
           
           html += '<li style="list-style-type :none;">';
           html += '<input type="checkbox" name="chkClass">&nbsp;&nbsp;';
+          html += '<div class="geostats-legend-block" style="background-color:#' + color_temp2[i] +'"></div>';
           html += ranges[i];
           html += '</li>';
    			}
@@ -359,8 +361,11 @@
 
         $('.area-result').html(html);
 
+        let color_temp = [[31,120,180],[51,160,44],[244,200,4],[243,123,3],[255,0,0]];
+
         // flowline vetor layer
         var flowlineSource2 = new ol.source.Vector({          
+          // url: '/data/qt_score.geojson',
           url: '/data/qt_score.geojson',
           format: new ol.format.GeoJSON()
         });
@@ -368,7 +373,34 @@
           //title: '도로 점수',
           visible: true,
           source: flowlineSource2,
-          style: styleFn
+          style: new ol.style.FlowLine({
+            visible: false,
+            lineCap: 'round',
+            color: function (f) {     //console.log(ranges);         
+              for(i = 0; i < ranges.length ; i++) {   				
+              
+                // console.log(Number(ranges[i].split('-')[0])+'-------');
+                
+                let temp_val = Number(f.getProperties().walk_index);
+                // console.log(temp_val);
+                if (temp_val == null || temp_val == 0) { console.log("1");
+                  return [0,0,0,0];
+                }
+                if((Number(ranges[i].split('-')[0]) < temp_val) && (Number(ranges[i].split('-')[1]) >= temp_val)) {
+                  // console.log("2");
+                  return color_temp[i];
+                } 
+              }              
+            },
+            width: 10,
+            geometry: function (f) {
+              if (f.getGeometry().getType() === 'MultiLineString') {
+                return f.getGeometry().getLineString(0);
+              } else {
+                return f.getGeometry();
+              }
+            }
+          })
         });
         map.addLayer(flowlineVector2);
 
@@ -395,6 +427,7 @@
             */
 
             // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
+            // setCoords_Z(flowlineSource2.getFeatures(), 'walk_index', 200);
             setCoords_Z2(flowlineSource2.getFeatures(), 200);
 
             // Set Min/Max from feature
