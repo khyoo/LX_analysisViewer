@@ -48,7 +48,7 @@
           ▶ 분석 레이어
         </div>
         <div class="grpLayer-body">
-          <input type="checkbox" id="psLayerChk" /> 보행점수 레이어
+          ▶ 보행점수 레이어
           <div class="grpLayer-body-sub">
             <div>
               <input type="checkbox" id="qtLayerChk" /> 정량점수 레이어               
@@ -65,9 +65,9 @@
               <div class="grpLayer-body-sub">
                 <input type="checkbox" id="qtPointHmapChk" /> 히트맵
                 <div class="rangebar qtPointhmapDiv">
-                  <label>HeatMap blur size</label>
+                  <label>히트맵 Control</label>
                   <br/>
-                  <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
+                  <input id="hmap_blur" type="range" min="0.1" max="1.5" step="0.1" value="1"/>
                 </div>
               </div>
             </div>
@@ -114,14 +114,14 @@
                   <div class="rangebar hmapSubDiv5">
                     <label>녹색 지수 Control</label>
                     <br/>
-                    <input id="psSky_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
+                    <input id="psTree_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>
                   </div>
                 </div>
                 <div>
                   <div class="rangebar hmapSubDiv6">
                     <label>하늘개방감 지수 Control</label>
                     <br/>
-                    <input id="psTree_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>        
+                    <input id="psSky_level_radius" style="width:100px;" type="range" min="0" max="1" step="0.1" value="1"/>        
                   </div>
                 </div>
                 <div>
@@ -143,7 +143,7 @@
           </div>
           <div class="grpLayer-body-sub">
             <div>
-              <input type="checkbox" id="psPointChk" /> 정성점수 레이어               
+              <input type="checkbox" id="qlLayerChk" /> 정성점수 레이어               
             </div>            
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qlPointChk" /> 포인트 레이어
@@ -157,9 +157,9 @@
               <div class="grpLayer-body-sub">
                 <input type="checkbox" id="qlPointHmapChk" /> 히트맵
                 <div class="rangebar qlPointhmapDiv">                            
-                  <label>HeatMap blur size</label>
+                  <label>히트맵 Control</label>
                   <br/>
-                  <input id="hmap_blur" type="range" min="0.1" max="1" step="0.1" value="0.1"/>
+                  <input id="hmap_blur_ql" type="range" min="0.1" max="1.5" step="0.1" value="1"/>
                 </div>
               </div>
             </div>
@@ -170,9 +170,11 @@
                 <span class="layer-download"><a href="#" id="down2" title="다운로드"><i class="fas fa-download"></i></a></span>            
               </div>
             </div>
+            <!--
             <div class="grpLayer-body-sub">
               <input type="checkbox" id="qlCustomChk" /> 커스텀 Control
             </div>
+            -->
           </div>
         </div>
 

@@ -22,6 +22,28 @@
     })
   });
 
+  // labelStyle 지정
+  var labelStyle2 = new ol.style.Style({
+    fill: new ol.style.Fill({
+      color: 'rgba(255, 255, 255, 0.6)'
+    }),
+    stroke: new ol.style.Stroke({
+      color: '#319FD3',
+      width: 1
+    }),
+    text: new ol.style.Text({
+      offsetY: 20,
+      font: '12px Calibri,sans-serif',
+      fill: new ol.style.Fill({
+        color: '#000'
+      }),
+      stroke: new ol.style.Stroke({
+        color: '#fff',
+        width: 3
+      })
+    })
+  });
+
   // Create layer
   var buildingSource = new ol.source.Vector({
     url: '/data/j_build.geojson',
@@ -100,6 +122,23 @@
     maxResolution: 25,
     zIndex: 1000
   });
+  var roadPOIVector_ql = new ol.layer.Vector({
+    //title: '도로 점수 Point2',
+    visible: false,
+    source: roadPOISource,
+    style: new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 5,
+        snapToPixel: false,
+        stroke: new ol.style.Stroke({
+          color: "#900",
+          width: 2
+        })
+      })
+    }),
+    maxResolution: 25,
+    zIndex: 1000
+  });
 
   // Create layer
   var roadPOISource_matcher = new ol.source.Vector({
@@ -130,12 +169,11 @@
     //title: '도로 점수 Point_label',
     visible: false,
     source: roadPOISource,
-    style: function (feature) {
-      // labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score, parseFloat(hmap_blur.value, 10)));
+    style: function (feature) {      
       labelStyle.getText().setText(feature.getProperties().qt_score);
       return labelStyle;
     },
-    //maxResolution: 25,
+    maxResolution: 25,
     zIndex: 1000
   });
 
@@ -144,12 +182,11 @@
     //title: '도로 점수 Point_label',
     visible: false,
     source: roadPOISource,
-    style: function (feature) {
-      // labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score, parseFloat(hmap_blur.value, 10)));
-      labelStyle.getText().setText(feature.getProperties().ql_score+'');
-      return labelStyle;
+    style: function (feature) {      
+      labelStyle2.getText().setText(feature.getProperties().ql_score+'');
+      return labelStyle2;
     },
-    //maxResolution: 25,
+    maxResolution: 25,
     zIndex: 1000
   });
 
@@ -157,10 +194,24 @@
     $('#div_load_image').show();
   });
 
+  
   roadPOISource.on('featuresloadend', function (e) {
     $('#div_load_image').hide();
     if (roadPOISource.getState() === 'ready') {
-      // TO-DO     
+      // TO-DO          
+      // roadPOISource.getFeatures().forEach(function (feature) {
+      //   // console.log(feature.getProperties().qt_score);
+      //   qt_score_max = Math.max(qt_score_max || -Infinity, feature.getProperties().qt_score);
+      //   qt_score_min = Math.min(qt_score_min || Infinity, feature.getProperties().qt_score); 
+        
+      //   ql_score_max = Math.max(ql_score_max || -Infinity, feature.getProperties().ql_score);
+      //   ql_score_min = Math.min(ql_score_min || Infinity, feature.getProperties().ql_score); 
+      // });
+
+      // console.log(qt_score_max);
+      // console.log(qt_score_min);
+      // console.log(ql_score_max);
+      // console.log(ql_score_min);
     }
   });
 
@@ -176,17 +227,44 @@
   });
 
   // flowline vetor layer
-  var flowlineSource = new ol.source.Vector({
-    // url: '/data/flowline.geojson',
-    //url: '/data/jeonju_road_line_origin.geojson',
-     url: '/data/qt_score.geojson',
+  var flowlineSource = new ol.source.Vector({    
+    url: '/data/qt_score.geojson',
     format: new ol.format.GeoJSON()
   });
   var flowlineVector = new ol.layer.VectorImage({
     //title: '도로 점수',
     visible: false,
-    source: flowlineSource,
-    style: styleFn
+    source: flowlineSource,    
+    style: new ol.style.FlowLine({      
+      lineCap: 'round',
+      color: function (f) {
+        let color_temp = [[31,120,180],[51,160,44],[244,200,4],[243,123,3],[255,0,0]];
+        let ranges = [
+          '1.500000~2.571000',
+          '2.571000~2.875000',
+          '2.875000~3.143000',
+          '3.143000~3.500000',
+          '3.500000~4.429000'
+        ];
+        for (i = 0; i < ranges.length; i++) {
+          let temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          if (temp_val == null || temp_val == 0) {            
+            return [0, 0, 0, 0];
+          }
+          if ((Number(ranges[i].split('~')[0]) < temp_val) && (Number(ranges[i].split('~')[1]) >= temp_val)) {            
+            return color_temp[i];
+          }
+        }
+      },
+      width: 10,
+      geometry: function (f) {
+        if (f.getGeometry().getType() === 'MultiLineString') {
+          return f.getGeometry().getLineString(0);
+        } else {
+          return f.getGeometry();
+        }
+      }
+    })
   });
   //map.addLayer(flowlineVector);
 
@@ -213,26 +291,52 @@
       */
 
       // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
-      setCoords_Z2(flowlineSource.getFeatures(), 200);
+      // setCoords_Z2(flowlineSource.getFeatures(), 200);
 
       // Set Min/Max from feature
       getMinMax(flowlineSource.getFeatures());
     }
   });
 
-
-   // flowline vetor layer
-   var flowlineSource_ql = new ol.source.Vector({
-    // url: '/data/flowline.geojson',
-    //url: '/data/jeonju_road_line_origin.geojson',
+  // flowline vetor layer
+  var flowlineSource_ql = new ol.source.Vector({    
      url: '/data/ql_score.geojson',
     format: new ol.format.GeoJSON()
   });
   var flowlineVector_ql = new ol.layer.VectorImage({
     //title: '도로 점수',
     visible: false,
-    source: flowlineSource_ql,
-    style: styleFn
+    source: flowlineSource_ql,    
+    style: new ol.style.FlowLine({
+      lineCap: 'round',
+      color: function (f) {        
+        let color_temp = [[31,120,180],[51,160,44],[244,200,4],[243,123,3],[255,0,0]];
+        let ranges = [
+          '-6.800150~-3.533720',
+          '-3.533720~-1.151980',
+          '-1.151980~-0.385320',
+          '-0.385320~0.637780',
+          '0.637780~3.951110'
+        ];
+        for (i = 0; i < ranges.length; i++) {
+          let temp_val = Number(f.getProperties().score_flt);
+          if (temp_val == null || temp_val == 0) {            
+            return [0, 0, 0, 0];
+          }
+          if ((Number(ranges[i].split('~')[0]) < temp_val) && (Number(ranges[i].split('~')[1]) >= temp_val)) {            
+            return color_temp[i];
+          }
+        }
+      },
+      width: 10,
+      geometry: function (f) {
+        if (f.getGeometry().getType() === 'MultiLineString') {
+          return f.getGeometry().getLineString(0);
+        } else {
+          return f.getGeometry();
+        }
+      }
+    })
   });
   //map.addLayer(flowlineVector);
 
@@ -259,7 +363,7 @@
       */
 
       // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
-      setCoords_Z2(flowlineSource_ql.getFeatures(), 200);
+      // setCoords_Z2(flowlineSource_ql.getFeatures(), 200);
 
       // Set Min/Max from feature
       getMinMax(flowlineSource_ql.getFeatures());

@@ -5,7 +5,7 @@
     hitTolerance: 10,
     multi: false,
     condition: ol.events.condition.pointerMove,
-    layers: [roadPOIVector],
+    layers: [roadPOIVector,roadPOIVector_ql],
     style: new ol.style.Style({
       image: new ol.style.Circle({
         radius: 10,
@@ -25,7 +25,7 @@
   // 마우스 클릭 시,
   var select = new ol.interaction.Select({
     hitTolerance: 5,
-    layers: [roadPOIVector],
+    layers: [roadPOIVector,roadPOIVector_ql],
     condition: ol.events.condition.singleClick
   });
   map.addInteraction(select);

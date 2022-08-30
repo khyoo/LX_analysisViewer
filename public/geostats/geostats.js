@@ -76,7 +76,7 @@ if (!Array.prototype.indexOf) {
 var geostats = function(a) {
 
 	this.objectID = '';
-	this.separator = ' - ';
+	this.separator = ' ~ ';
 	this.legendSeparator = this.separator;
 	this.method  = '';
 	this.precision = 0;
@@ -611,7 +611,7 @@ var geostats = function(a) {
 	    var interval = (tmpMax - tmpMin) / nbClass;
 
 	    for (var i = 0; i <= nbClass; i++) {
-	        a[i] = val.toFixed(4);
+	        a[i] = val.toFixed(5);
 	        val += interval;
 	    }
 
