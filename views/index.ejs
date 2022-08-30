@@ -277,6 +277,12 @@
           <span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
         </h2>
         <div id="trackQuery" style="margin-top:30px;">
+          <div style="margin-bottom:10px;">
+              <label for="radio-1" style="width: 110px;">정량 평가</label>
+              <input type="radio" name="radio-1" id="radio-1" class="geostat-radio" checked>
+              <label for="radio-2" style="width: 110px;">정성 평가</label>
+              <input type="radio" name="radio-1" id="radio-2" class="geostat-radio">
+          </div>
           <div class="geostats-mode">
             <label><strong>모드 : </strong></label>
             <select name="analysisMode" id="analysisMode" style="width: 125px; height: 30px; border: 1px solid #c5c5c5;">
@@ -347,6 +353,8 @@
   <% include ./modules/layers %>  
    
   <script type="text/javascript">
+ 
+    $( ".geostat-radio" ).checkboxradio();
 
     var spinner = $( "#classCnt" ).spinner({
       min: 1,

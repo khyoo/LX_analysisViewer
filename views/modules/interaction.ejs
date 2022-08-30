@@ -34,15 +34,15 @@
   select.getFeatures().on(['add'], function (e) {
     var feature = e.element;
 
-    let html = '<div style="padding:10px 2px;">';
+    let html = '<div style="padding:10px 15px;">';
     html += '<div style="width:180px;text-align:center;padding:2px;">전방 이미지</div>';
-    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_3') + '" width="180px" height="180px" /></p>';
+    html += '<p ><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_3') + '" width="200px" height="200px" /></p>';
     html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">좌측 이미지</div>';
-    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_2') + '" width="180px" height="180px" /></p>';
+    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_2') + '" width="200px" height="200px" /></p>';
     html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">우측 이미지</div>';
-    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_4') + '" width="180px" height="180px" /></p>';
+    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_4') + '" width="200px" height="200px" /></p>';
     html += '<div style="width:180px;text-align:center;padding:2px;margin-top:-5px;">후방 이미지</div>';
-    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_1') + '" width="180px" height="180px" /></p>';
+    html += '<p><img class="roadImg" src="http://info.rlog.kr:35000/images/' + feature.get('img_1') + '" width="200px" height="200px" /></p>';
     html += '</div>';
 
     $('#images').html(html);

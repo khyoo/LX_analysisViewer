@@ -89,10 +89,11 @@
   
 
   map.addLayer(roadPOILabelVector);
-  
+  map.addLayer(roadPOILabelVector_ql);
 
 
   map.addLayer(flowlineVector);
+  map.addLayer(flowlineVector_ql);
 
   $('#psLayerChk2').on('click', function () {
     if ($('#psLayerChk2').is(':checked')) {
@@ -241,6 +242,54 @@
 
 
 
+  $('#qlPointChk').on('click', function () {
+    if (roadPOIVector.getVisible()) {
+      roadPOIVector.setVisible(false);
+      roadPOILabelVector_ql.setVisible(false);      
+
+      $('#qlPointScoreChk').prop('checked', false);
+      $('.qlPointDiv').css('display', 'none');
+      
+      $('#qlPointHmapChk').prop('checked', false);
+      hmapVector.setVisible(false);
+      $('.qlPointhmapDiv').hide();      
+    } else {
+      roadPOIVector.setVisible(true);
+      roadPOILabelVector_ql.setVisible(true);
+      
+      $('#qlPointScoreChk').prop('checked', true);
+      $('.qlPointDiv').css('display', 'inline');
+
+      $('#qlPointHmapChk').prop('checked', true);
+      hmapVector.setVisible(true);
+      $('.qlPointhmapDiv').show();
+    }
+  });
+
+  $('#qlPointScoreChk').on('click', function () {
+    if (roadPOILabelVector_ql.getVisible()) {
+      roadPOILabelVector_ql.setVisible(false);
+    } else {
+      roadPOILabelVector_ql.setVisible(true);
+    }
+  });
+
+
+
+  $('#qlRoadScoreChk').on('click', function () {
+    if (flowlineVector_ql.getVisible()) {
+      flowlineVector_ql.setVisible(false);      
+      $('.qlRoadScoreDiv').css('display', 'none');
+    } else {
+      flowlineVector_ql.setVisible(true);      
+      $('.qlRoadScoreDiv').css('display', 'inline');
+    }
+  });
+
+
+
+
+
 
 
 
@@ -319,6 +368,10 @@
     });
   });
 
+
+
+
+  // 공간 분석 결과 이벤트 처리
   $('#btnCreate').on('click', function(){
       let len = $('#classCnt').val();
 

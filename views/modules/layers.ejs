@@ -78,7 +78,7 @@
 
   // Create layer
   var roadPOISource = new ol.source.Vector({
-    url: '/data/poi.geojson',
+    url: '/data/poi.geojson',    
     projection: 'EPSG:3857',
     format: new ol.format.GeoJSON()
   });
@@ -125,12 +125,28 @@
     zIndex: 1000
   });
 
+  // 정량 점수 레이어
   var roadPOILabelVector = new ol.layer.Vector({
     //title: '도로 점수 Point_label',
     visible: false,
     source: roadPOISource,
     style: function (feature) {
-      labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score, parseFloat(hmap_blur.value, 10)));
+      // labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score, parseFloat(hmap_blur.value, 10)));
+      labelStyle.getText().setText(feature.getProperties().qt_score);
+      return labelStyle;
+    },
+    //maxResolution: 25,
+    zIndex: 1000
+  });
+
+  // 정성 점수 레이어
+  var roadPOILabelVector_ql = new ol.layer.Vector({
+    //title: '도로 점수 Point_label',
+    visible: false,
+    source: roadPOISource,
+    style: function (feature) {
+      // labelStyle.getText().setText(weightsFunc(feature.getProperties().qt_score, parseFloat(hmap_blur.value, 10)));
+      labelStyle.getText().setText(feature.getProperties().ql_score+'');
       return labelStyle;
     },
     //maxResolution: 25,
@@ -204,6 +220,51 @@
     }
   });
 
+
+   // flowline vetor layer
+   var flowlineSource_ql = new ol.source.Vector({
+    // url: '/data/flowline.geojson',
+    //url: '/data/jeonju_road_line_origin.geojson',
+     url: '/data/ql_score.geojson',
+    format: new ol.format.GeoJSON()
+  });
+  var flowlineVector_ql = new ol.layer.VectorImage({
+    //title: '도로 점수',
+    visible: false,
+    source: flowlineSource_ql,
+    style: styleFn
+  });
+  //map.addLayer(flowlineVector);
+
+  flowlineSource_ql.on('featuresloadstart', function (e) {
+    $('#div_load_image').show();
+  });
+
+  flowlineSource_ql.on('featuresloadend', function (e) {
+    $('#div_load_image').hide();
+    if (flowlineSource_ql.getState() === 'ready') {
+      // TO-DO     
+    }
+  });
+
+  flowlineSource_ql.once('change', function (e) {
+    if (flowlineSource_ql.getState() === 'ready') {
+      /**
+      * author : khyoo1221
+      * description : 
+      * @param {feature}
+      * @param {paramNm}
+      * @param {px}
+      * 
+      */
+
+      // setCoords_Z(flowlineSource.getFeatures()[0], 'params', flowlineSource.getFeatures()[0].getProperties().weights[0].w1);      
+      setCoords_Z2(flowlineSource_ql.getFeatures(), 200);
+
+      // Set Min/Max from feature
+      getMinMax(flowlineSource_ql.getFeatures());
+    }
+  });
 
   /*
   var flowline_radius = document.getElementById('flowline_radius');
