@@ -176,41 +176,51 @@
           // console.log(f.getProperties().tree_level);
           let color_temp = [[31,120,180],[51,160,44],[244,200,4],[243,123,3],[255,0,0]];
           let ranges = [
-            '1.500000~2.571000',
+            '0.000000~2.571000',
             '2.571000~2.875000',
             '2.875000~3.143000',
             '3.143000~3.500000',
-            '3.500000~4.429000'
+            '3.500000~5.000000'
           ];
-          
-          let temp_val;
-          switch(type) {
-            case 'obst':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level*parseFloat(psObst_level_radius.value, 10), f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-            case 'sf':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level*parseFloat(psSf_level_radius.value, 10));
-              break;
-            case 'sr':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level*parseFloat(psSr_level_radius.value, 10), f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-            case 'slop':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level*parseFloat(psSlop_level_radius.value, 10), f.getProperties().sf_level);
-              break;
-            case 'tree':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level*parseFloat(psTree_level_radius.value, 10), f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-            case 'sky':
-              temp_val = means_qt(f.getProperties().sky_level*parseFloat(psSky_level_radius.value, 10), f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-            case 'poi':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level*parseFloat(psPoi_level_radius.value, 10), f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-            case 'bus':
-              temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level*parseFloat(psBus_level_radius.value, 10), f.getProperties().slop_level, f.getProperties().sf_level);
-              break;
-          }
 
+          let temp_obst = f.getProperties().obst_level*parseFloat(psObst_level_radius.value, 10);
+          let temp_sf = f.getProperties().sf_level*parseFloat(psSf_level_radius.value, 10);
+          let temp_sr = f.getProperties().sr_level*parseFloat(psSr_level_radius.value, 10);
+          let temp_slop = f.getProperties().slop_level*parseFloat(psSlop_level_radius.value, 10);
+          let temp_tree = f.getProperties().tree_level*parseFloat(psTree_level_radius.value, 10);
+          let temp_sky = f.getProperties().sky_level*parseFloat(psSky_level_radius.value, 10);
+          let temp_poi = f.getProperties().poi_level*parseFloat(psPoi_level_radius.value, 10);
+          let temp_bus = f.getProperties().bus_level*parseFloat(psBus_level_radius.value, 10);
+
+          let temp_val;           
+          temp_val = means_qt(temp_obst, temp_sf, temp_sr, temp_slop, temp_tree, temp_sky, temp_poi, temp_bus);
+          // switch(type) {
+          //   case 'obst':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level*parseFloat(psObst_level_radius.value, 10), f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          //   case 'sf':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level*parseFloat(psSf_level_radius.value, 10));
+          //     break;
+          //   case 'sr':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level*parseFloat(psSr_level_radius.value, 10), f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          //   case 'slop':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level*parseFloat(psSlop_level_radius.value, 10), f.getProperties().sf_level);
+          //     break;
+          //   case 'tree':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level*parseFloat(psTree_level_radius.value, 10), f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          //   case 'sky':
+          //     temp_val = means_qt(f.getProperties().sky_level*parseFloat(psSky_level_radius.value, 10), f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          //   case 'poi':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level*parseFloat(psPoi_level_radius.value, 10), f.getProperties().bus_level, f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          //   case 'bus':
+          //     temp_val = means_qt(f.getProperties().sky_level, f.getProperties().tree_level, f.getProperties().sr_level, f.getProperties().obst_level, f.getProperties().poi_level, f.getProperties().bus_level*parseFloat(psBus_level_radius.value, 10), f.getProperties().slop_level, f.getProperties().sf_level);
+          //     break;
+          // }
+          // console.log(temp_val);
           for (i = 0; i < ranges.length; i++) {            
             // console.log(f.getProperties().panoid);
             // console.log(temp_val);
