@@ -657,7 +657,32 @@
 
 
   function means_qt(a, b, c, d, e, f, g, h) {
-    return Number((Number(a)+Number(b)+Number(c)+Number(d)+Number(e)+Number(f)+Number(g)+Number(h))/8);
+    let x = 0;
+    if (Number(a) > 0) {
+      x = x+1;
+    } 
+    if (Number(b) > 0) {
+      x = x+1;
+    } 
+    if (Number(c) > 0) {
+      x = x+1;
+    } 
+    if (Number(d) > 0) {
+      x = x+1;
+    } 
+    if (Number(e) > 0) {
+      x = x+1;
+    } 
+    if (Number(f) > 0) {
+      x = x+1;
+    } 
+    if (Number(g) > 0) {
+      x = x+1;
+    } 
+    if (Number(h) > 0) {
+      x = x+1;
+    }    
+    return x>0?Number((Number(a)+Number(b)+Number(c)+Number(d)+Number(e)+Number(f)+Number(g)+Number(h))/x):0;
   }
 
 </script>
